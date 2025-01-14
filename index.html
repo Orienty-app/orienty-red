@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirection Orienty</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f9f9f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    h1 {
+      font-size: 2em;
+      margin-bottom: 1rem;
+    }
+    p {
+      font-size: 1.2em;
+      margin-bottom: 2rem;
+    }
+    button {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1em;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+      // Vérification si c'est un appareil iOS
+      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        window.location.href = "https://apple.co/40jCXnQ";
+      }
+    });
+  </script>
+</head>
+<body>
+  <h1>Orienty arrive bientôt !</h1>
+  <p>L'application sera bientôt disponible sur votre appareil.</p>
+  <button onclick="window.location.href='https://news.orienty.fr'">S'inscrire à la newsletter</button>
+</body>
+</html>
