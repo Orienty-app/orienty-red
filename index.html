@@ -1,62 +1,108 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Redirection Orienty</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background-color: #f9f9f9;
-      color: #333;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-    h1 {
-      font-size: 2em;
-      margin-bottom: 1rem;
-    }
-    p {
-      font-size: 1.2em;
-      margin-bottom: 2rem;
-    }
-    button {
-      background-color: #007bff;
-      color: #fff;
-      border: none;
-      padding: 10px 20px;
-      font-size: 1em;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-    button:hover {
-      background-color: #0056b3;
-    }
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-  </style>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Découvre Orienty, une application pour simplifier ton orientation ! Télécharge-la sur l'App Store ou Google Play.">
+    <title>Orienty</title>
+    <link rel="stylesheet" href="./home.css">
+    <link rel="icon" href="/logo.png" type="image/png">
+    <style>
+        body {
+            text-align: center;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 1rem;
+        }
+        p {
+            font-size: 1.2em;
+            margin-bottom: 2rem;
+        }
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
-      // Vérification si c'est un appareil iOS
-      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-        window.location.href = "https://apple.co/40jCXnQ";
-      }
-    });
-  </script>
+            // Vérification si c'est un appareil iOS
+            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                window.location.href = "https://apple.co/40jCXnQ";
+            }
+            // Vérification si c'est un appareil Android
+            else if (/Android/.test(userAgent)) {
+                document.getElementById("android-message").classList.remove("hidden");
+            } 
+            // Autres appareils : affichage du site web
+            else {
+                document.getElementById("website-content").classList.remove("hidden");
+            }
+        });
+    </script>
 </head>
 <body>
-  <h1>Orienty arrive bientôt !</h1>
-  <p>L'application sera bientôt disponible sur votre appareil.</p>
-  <button onclick="window.location.href='https://news.orienty.fr'">S'inscrire à la newsletter</button>
+    <!-- Contenu pour Android -->
+    <div id="android-message" class="hidden">
+        <h1>Orienty arrive bientôt !</h1>
+        <p>L'application sera bientôt disponible sur votre appareil Android.</p>
+        <button onclick="window.location.href='https://news.orienty.fr'">S'inscrire à la newsletter</button>
+    </div>
+
+    <!-- Contenu pour le site web -->
+    <div id="website-content" class="hidden">
+        <header class="app-bar">
+            <img src="/LogoSVG.png" alt="Logo Orienty" class="logo">
+            <h1 class="app-title">Orienty</h1>
+        </header>
+
+        <main class="content">
+            <section class="left">
+                <h1>Bienvenue sur Orienty</h1>
+                <h2>Votre assistant de navigation personnalisé</h2>
+                <div class="buttons">
+                    <a href="https://apple.co/40jCXnQ">
+                        <img src="/apple.svg" alt="Télécharger sur l'App Store" class="store-button">
+                    </a>
+                    <a href="https://news.orienty.fr">
+                        <img src="/google.png" alt="Télécharger sur Google Play" class="store-button">
+                    </a>
+                </div>
+            </section>
+            <section class="right">
+                <img src="/mockup.png" alt="Aperçu de l'application Orienty" class="phone-image">
+            </section>
+        </main>
+
+        <footer class="footer">
+            <a href="/tos.html" class="footer-link">Conditions Générales d'Utilisation</a>
+        </footer>
+    </div>
 </body>
 </html>
