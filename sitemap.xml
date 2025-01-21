@@ -9,14 +9,6 @@
         <priority>1.0</priority>
     </url>
 
-    <!-- Page de téléchargement sur l'App Store -->
-    <url>
-        <loc>https://apple.co/40jCXnQ</loc>
-        <lastmod>2025-01-21</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
     <!-- Page de téléchargement sur Google Play -->
     <url>
         <loc>https://news.orienty.fr</loc>
