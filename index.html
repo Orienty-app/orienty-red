@@ -12,7 +12,7 @@
     <!-- Balises Open Graph pour le partage sur les réseaux sociaux -->
     <meta property="og:title" content="Orienty - Trouvez des réponses à vos questions d'orientation">
     <meta property="og:description" content="Orienty met en relation des lycéens avec des étudiants pour répondre à toutes leurs questions sur l'orientation. Téléchargez l'application pour découvrir votre avenir.">
-    <meta property="og:image" content="https://www.orienty.fr/twitter-image.png">
+    <meta property="og:image" content="https://www.orienty.fr/Assets/twitter-image.png">
     <meta property="og:url" content="https://www.orienty.fr">
     <meta property="og:type" content="website">
 
@@ -22,73 +22,15 @@
     <meta property="og:url" content="https://orienty.fr" />
     <meta property="og:title" content="Orienty - Trouve des réponses à tes questions d'orientation" />
     <meta property="og:description" content="Connecte-toi avec des étudiants pour obtenir des conseils sur ton orientation scolaire grâce à Orienty. Téléchargez l'application maintenant !" />
-    <meta property="og:image" content="https://www.orienty.fr/twitter-image.png" />
+    <meta property="og:image" content="https://www.orienty.fr/Assets/twitter-image.png" />
 
     <!-- Titre de la page -->
     <title>Orienty - Réponses personnalisées pour votre orientation</title>
 
-    <link rel="stylesheet" href="./home.css">
-    <link rel="icon" href="https://www.orienty.fr/Logo.png" type="image/png">
-    <style>
-        body {
-            text-align: center;
-            background-color: #f9f9f9;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        h1 {
-            font-size: 2em;
-            margin-bottom: 1rem;
-        }
-        p {
-            font-size: 1em;
-            margin-bottom: 2rem;
-            color: #333;
-        }
-        button {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            font-size: 1em;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-        .hidden {
-            display: none;
-        }
-    </style>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    <link rel="stylesheet" href="/home.css">
+    <link rel="icon" href="https://www.orienty.fr/Assets/Logo.png" type="image/png">
 
-            // Vérification si c'est un appareil iOS
-            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-                window.location.href = "https://apple.co/40jCXnQ";
-            }
-            // Vérification si c'est un appareil Android
-            else if (/Android/.test(userAgent)) {
-                document.getElementById("android-message").classList.remove("hidden");
-            } 
-            // Autres appareils : affichage du site web
-            else {
-                document.getElementById("website-content").classList.remove("hidden");
-            }
-        });
-    </script>
+    <link href="/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <!-- Contenu pour Android -->
@@ -101,7 +43,7 @@
     <!-- Contenu pour le site web -->
     <div id="website-content" class="hidden">
         <header class="app-bar">
-            <img src="/LogoSVG.png" alt="Logo Orienty" class="logo">
+            <img src="/Assets/LogoSVG.png" alt="Logo Orienty" class="logo">
             <h2 class="app-title">Orienty</h2>
         </header>
 
@@ -112,21 +54,23 @@
                 <p>Orienty connecte des lycéens avec des étudiants pour répondre à toutes leurs questions sur l'orientation. Découvre des conseils personnalisés et prends des décisions éclairées pour ton avenir scolaire.</p>
                 <div class="buttons">
                     <a href="https://apple.co/40jCXnQ">
-                        <img src="/apple.svg" alt="Télécharger sur l'App Store" class="store-button">
+                        <img src="/Assets/apple.svg" alt="Télécharger sur l'App Store" class="store-button">
                     </a>
                     <a href="https://news.orienty.fr">
-                        <img src="/google.png" alt="Télécharger sur Google Play" class="store-button">
+                        <img src="/Assets/google.png" alt="Télécharger sur Google Play" class="store-button">
                     </a>
                 </div>
             </section>
             <section class="right">
-                <img src="/mockup.png" alt="Aperçu de l'application Orienty" class="phone-image">
+                <img src="/Assets/mockup.png" alt="Aperçu de l'application Orienty" class="phone-image">
             </section>
         </main>
 
         <footer class="footer">
-            <a href="/tos.html" class="footer-link">Conditions Générales d'Utilisation</a>
+            <a href="/Tos/tos.html" class="footer-link">Conditions Générales d'Utilisation</a>
         </footer>
     </div>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="script.js"></script>
 </html>
