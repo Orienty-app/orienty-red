@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <!-- Métadonnées de base -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Orienty connecte les lycéens avec des étudiants pour répondre à leurs questions sur l'orientation. Trouvez des réponses personnalisées pour choisir votre avenir.">
+    <meta name="description"
+        content="Orienty connecte les lycéens avec des étudiants pour répondre à leurs questions sur l'orientation. Trouvez des réponses personnalisées pour choisir votre avenir.">
     <meta name="author" content="Orienty Team">
-    <meta name="keywords" content="Orienty, orientation scolaire, lycéens, étudiants, mentorat, conseils orientation, avenir scolaire, application orientation, App Store, Google Play">
+    <meta name="keywords"
+        content="Orienty, orientation scolaire, lycéens, étudiants, mentorat, conseils orientation, avenir scolaire, application orientation, App Store, Google Play">
     <meta name="robots" content="index, follow">
 
     <!-- Balises Open Graph pour le partage sur les réseaux sociaux -->
     <meta property="og:title" content="Orienty - Trouvez des réponses à vos questions d'orientation">
-    <meta property="og:description" content="Orienty met en relation des lycéens avec des étudiants pour répondre à toutes leurs questions sur l'orientation. Téléchargez l'application pour découvrir votre avenir.">
+    <meta property="og:description"
+        content="Orienty met en relation des lycéens avec des étudiants pour répondre à toutes leurs questions sur l'orientation. Téléchargez l'application pour découvrir votre avenir.">
     <meta property="og:image" content="https://www.orienty.fr/Assets/twitter-image.png">
     <meta property="og:url" content="https://www.orienty.fr">
     <meta property="og:type" content="website">
@@ -21,7 +25,8 @@
     <meta name="twitter:site" content="@orientyfr" />
     <meta property="og:url" content="https://orienty.fr" />
     <meta property="og:title" content="Orienty - Trouve des réponses à tes questions d'orientation" />
-    <meta property="og:description" content="Connecte-toi avec des étudiants pour obtenir des conseils sur ton orientation scolaire grâce à Orienty. Téléchargez l'application maintenant !" />
+    <meta property="og:description"
+        content="Connecte-toi avec des étudiants pour obtenir des conseils sur ton orientation scolaire grâce à Orienty. Téléchargez l'application maintenant !" />
     <meta property="og:image" content="https://www.orienty.fr/Assets/twitter-image.png" />
 
     <!-- Titre de la page -->
@@ -31,7 +36,9 @@
     <link rel="icon" href="https://www.orienty.fr/Assets/Logo.png" type="image/png">
 
     <link href="/style.css" rel="stylesheet" type="text/css" />
+    <link href="/home.css" rel="stylesheet" type="text/css" />
 </head>
+
 <body>
     <!-- Contenu pour Android -->
     <div id="android-message" class="hidden">
@@ -46,12 +53,13 @@
             <img src="/Assets/LogoSVG.png" alt="Logo Orienty" class="logo">
             <h2 class="app-title">Orienty</h2>
         </header>
-
         <main class="content">
             <section class="left">
                 <h1>Bienvenue sur Orienty</h1>
                 <h2>Ton guide d'orientation scolaire personnalisé</h2>
-                <p>Orienty connecte des lycéens avec des étudiants pour répondre à toutes leurs questions sur l'orientation. Découvre des conseils personnalisés et prends des décisions éclairées pour ton avenir scolaire.</p>
+                <p>Orienty connecte des lycéens avec des étudiants pour répondre à toutes leurs questions sur
+                    l'orientation. Découvre des conseils personnalisés et prends des décisions éclairées pour ton avenir
+                    scolaire.</p>
                 <div class="buttons">
                     <a href="https://apple.co/40jCXnQ">
                         <img src="/Assets/apple.svg" alt="Télécharger sur l'App Store" class="store-button">
@@ -62,7 +70,11 @@
                 </div>
             </section>
             <section class="right">
-                <img src="/Assets/mockup.png" alt="Aperçu de l'application Orienty" class="phone-image">
+                <div class="mockup-container">
+                    <img src="/Assets/Mockup/MockupNoQA.png" class="mockup mbackground" />
+                    <img src="/Assets/Mockup/Reponse.png" class="mockup reponse" />
+                    <img src="/Assets/Mockup/Question.png" class="mockup question" />
+                </div>
             </section>
         </main>
 
@@ -73,4 +85,5 @@
 </body>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
 <script src="script.js"></script>
+
 </html>

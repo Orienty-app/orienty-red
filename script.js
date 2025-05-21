@@ -1,16 +1,27 @@
-document.addEventListener("DOMContentLoaded", () => {
-            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+// Masquer les images au départ
+gsap.set(".question, .reponse, .mbackground", { opacity: 0, rotate: 0 });
 
-            // Vérification si c'est un appareil iOS
-            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-                window.location.href = "https://apple.co/40jCXnQ";
-            }
-            // Vérification si c'est un appareil Android
-            else if (/Android/.test(userAgent)) {
-                document.getElementById("android-message").classList.remove("hidden");
-            } 
-            // Autres appareils : affichage du site web
-            else {
-                document.getElementById("website-content").classList.remove("hidden");
-            }
-        });
+// Animation en fondu
+gsap.to(".mbackground", {
+  opacity: 1,
+  duration: 1,
+  delay: 0
+});
+
+gsap.to(".question", {
+  opacity: 1,
+  y: 0,
+  duration: 0.6,
+  delay: 0.3,
+  ease: "power2.out",
+  rotate: -5,
+});
+
+gsap.to(".reponse", {
+  opacity: 1,
+  y: 0,
+  duration: 0.6,
+  delay: 1,
+  ease: "power2.out",
+  rotate: 7,
+});

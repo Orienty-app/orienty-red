@@ -8,8 +8,8 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
-    flex-direction: column;
     min-height: 100vh;
+    background-color: #fff;
 }
 
 /* AppBar */
@@ -113,11 +113,27 @@ body {
     .buttons {
         justify-content: center;
     }
+
+    .right {
+        width: 100%;
+    }
+
+    .mockup-container {
+        height: 55vh;
+    }
+
+    .app-bar {
+        display: flex;
+        padding-top: 15%;
+        align-items: center;
+        background-color: #fff;
+        color: black;
+    }
 }
 
 @media (max-width: 768px) {
     .app-bar {
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
         text-align: center;
     }
