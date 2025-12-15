@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orienty - L'orientation en couleurs</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Sora:wght@100..800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#000000',
+                        secondary: '#F7F7F9',
+                        accent: '#5384FD', // Le Bleu Orienty
+                        surface: '#FFFFFC', // Blanc cassé demandé
+                        
+                        // TA PALETTE PASTEL
+                        pastel: {
+                            red: '#ffadad',
+                            orange: '#ffd6a5',
+                            yellow: '#fdffb6',
+                            green: '#caffbf',
+                            cyan: '#9bf6ff',
+                            blue: '#a0c4ff',
+                            purple: '#bdb2ff',
+                            pink: '#ffc6ff',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Sora"', 'sans-serif'],
+                    },
+                    borderRadius: {
+                        'xl': '14px',
+                        '2xl': '20px',
+                        '3xl': '32px',
+                    },
+                    animation: {
+                        'scroll': 'scroll 30s linear infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        scroll: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { 
+            overflow-x: hidden; 
+            background-color: #FFFFFC; 
+            color: #000000; 
+        }
+
+        /* Masquer la scrollbar horizontalement */
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Animation FAQ */
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .faq-open .faq-content { max-height: 300px; }
+        .faq-icon { transition: transform 0.3s ease; }
+        .faq-open .faq-icon { transform: rotate(180deg); }
+
+        /* Menu Mobile */
+        #mobile-menu { transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s; }
+        .menu-hidden { transform: translateY(-20px); opacity: 0; pointer-events: none; }
+        .menu-visible { transform: translateY(0); opacity: 1; pointer-events: auto; }
+
+        /* Effet de blobs animés dans le Bento */
+        .blob-anim { animation: float-blob 8s ease-in-out infinite; }
+        @keyframes float-blob {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(10px, -10px) scale(1.1); }
+            66% { transform: translate(-5px, 10px) scale(0.9); }
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #000000 30%, #5384FD 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-pastel-blue selection:text-black">
+
+    <nav class="fixed w-full z-50 top-0 px-4 py-4">
+        <div class="max-w-7xl mx-auto bg-white/80 backdrop-blur-md border border-gray-100 rounded-2xl px-6 py-3 shadow-sm flex justify-between items-center relative">
+            
+            <div class="flex items-center gap-2 z-50">
+                <div class="w-9 h-9 bg-black rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-black/20">O</div>
+                <span class="text-xl font-bold tracking-tight">Orienty</span>
+            </div>
+
+            <div class="hidden md:flex gap-8 text-sm font-semibold text-gray-500">
+                <a href="#concept" class="hover:text-black transition">Le Concept</a>
+                <a href="#mentor" class="hover:text-black transition">Devenir Mentor</a>
+                <a href="#team" class="hover:text-black transition">L'Équipe</a>
+                <a href="#faq" class="hover:text-black transition">FAQ</a>
+            </div>
+
+            <div class="hidden md:block">
+                <a href="#" class="bg-black text-white px-6 py-2.5 rounded-xl font-bold text-sm hover:bg-accent transition-colors duration-300 shadow-xl shadow-black/10">
+                    Télécharger
+                </a>
+            </div>
+
+            <button id="menu-btn" class="md:hidden z-50 p-2 text-black focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+
+            <div id="mobile-menu" class="absolute top-full left-0 w-full bg-white border-b border-gray-100 shadow-xl p-6 flex flex-col gap-4 md:hidden menu-hidden rounded-b-2xl">
+                <a href="#concept" class="text-lg font-bold text-gray-800" onclick="toggleMenu()">Le Concept</a>
+                <a href="#mentor" class="text-lg font-bold text-gray-800" onclick="toggleMenu()">Devenir Mentor</a>
+                <a href="#team" class="text-lg font-bold text-gray-800" onclick="toggleMenu()">L'Équipe</a>
+                <hr class="border-gray-100">
+                <a href="#" class="bg-black text-white px-6 py-3 rounded-xl font-bold text-center w-full shadow-lg">Télécharger l'App</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative min-h-[90vh] pt-32 pb-12 flex items-center overflow-hidden">
+        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-pastel-blue rounded-full blur-[100px] opacity-40 -translate-y-1/2 translate-x-1/3 -z-10 animate-pulse"></div>
+        <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-pastel-red rounded-full blur-[100px] opacity-30 translate-y-1/4 -translate-x-1/4 -z-10"></div>
+
+        <div class="container mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+            
+            <div class="space-y-8 text-center lg:text-left order-2 lg:order-1 hero-content">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-gray-100 text-xs font-bold text-black shadow-sm mx-auto lg:mx-0">
+                    <span class="relative flex h-2 w-2">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
+                    </span>
+                    L'App #1 pour ton orientation
+                </div>
+                
+                <h1 class="text-5xl sm:text-6xl md:text-7xl font-bold leading-[1.05] tracking-tight">
+                    Ton avenir <br>
+                    <span class="text-gradient">sans le filtre.</span>
+                </h1>
+                
+                <p class="text-lg text-gray-500 max-w-lg mx-auto lg:mx-0 font-medium leading-relaxed">
+                    Ne choisis pas ton école sur une brochure. Discute directement avec les étudiants qui sont déjà là où tu rêves d'aller.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 pt-4 justify-center lg:justify-start">
+                    <button class="px-8 py-4 bg-black text-white rounded-2xl font-bold hover:scale-105 transition duration-300 shadow-xl shadow-black/20 flex items-center justify-center gap-2">
+                        Commencer
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    </button>
+                    <button class="px-8 py-4 bg-white border border-gray-200 text-black rounded-2xl font-bold hover:bg-secondary transition duration-300">
+                        Je suis étudiant
+                    </button>
+                </div>
+
+                <div class="flex justify-center lg:justify-start gap-10 pt-4 border-t border-gray-100/50">
+                    <div>
+                        <p class="text-3xl font-bold">15k+</p>
+                        <p class="text-xs text-gray-400 font-bold uppercase tracking-wider">Utilisateurs</p>
+                    </div>
+                    <div>
+                        <p class="text-3xl font-bold">1200</p>
+                        <p class="text-xs text-gray-400 font-bold uppercase tracking-wider">Écoles</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative z-10 flex justify-center order-1 lg:order-2 hero-image animate-float">
+                <div class="relative w-[280px] h-[580px] md:w-[320px] md:h-[640px] bg-white border-[8px] border-black rounded-[45px] shadow-2xl overflow-hidden transform lg:rotate-[-3deg] hover:rotate-0 transition duration-500">
+                    <div class="h-full flex flex-col bg-secondary">
+                        <div class="px-5 py-5 bg-white border-b border-gray-50 flex justify-between items-center pb-3">
+                            <h2 class="text-xl font-bold text-black">Accueil</h2>
+                            <div class="w-8 h-8 bg-pastel-blue rounded-full border border-gray-100"></div>
+                        </div>
+
+                        <div class="flex-1 p-4 space-y-4 overflow-hidden">
+                            <div class="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+                                <div class="text-center flex-shrink-0">
+                                    <div class="w-16 h-16 rounded-full border-2 border-accent p-0.5"><div class="w-full h-full rounded-full bg-pastel-orange"></div></div>
+                                    <span class="text-[10px] font-bold mt-1 block">Léa</span>
+                                </div>
+                                <div class="text-center flex-shrink-0">
+                                    <div class="w-16 h-16 rounded-full border-2 border-gray-200 p-0.5"><div class="w-full h-full rounded-full bg-pastel-green"></div></div>
+                                    <span class="text-[10px] text-gray-400 mt-1 block">Tom</span>
+                                </div>
+                                <div class="text-center flex-shrink-0">
+                                    <div class="w-16 h-16 rounded-full border-2 border-gray-200 p-0.5"><div class="w-full h-full rounded-full bg-pastel-purple"></div></div>
+                                    <span class="text-[10px] text-gray-400 mt-1 block">Sam</span>
+                                </div>
+                            </div>
+
+                            <div class="bg-black text-white p-5 rounded-3xl shadow-lg relative overflow-hidden">
+                                <div class="absolute -right-6 -top-6 w-24 h-24 bg-pastel-purple rounded-full blur-xl opacity-60"></div>
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="w-10 h-10 rounded-full bg-gray-700 border border-white/20"></div>
+                                    <div><p class="font-bold text-sm">Lucas, HEC</p><p class="text-[10px] text-gray-400">Master 2</p></div>
+                                </div>
+                                <p class="text-sm text-gray-200 leading-relaxed">"La prépa c'était dur, mais ça vaut le coup. Je te partage mes fiches ?"</p>
+                            </div>
+
+                            <div class="space-y-2">
+                                <div class="p-4 bg-white rounded-2xl shadow-sm flex items-center gap-3">
+                                    <div class="w-10 h-10 bg-pastel-red/20 text-black rounded-xl flex items-center justify-center">🎓</div>
+                                    <div><p class="text-xs font-bold">Mes vœux</p><p class="text-[10px] text-gray-400">Parcoursup 2025</p></div>
+                                </div>
+                                <div class="p-4 bg-white rounded-2xl shadow-sm flex items-center gap-3">
+                                    <div class="w-10 h-10 bg-pastel-yellow/50 text-black rounded-xl flex items-center justify-center">🏫</div>
+                                    <div><p class="text-xs font-bold">Explorer</p><p class="text-[10px] text-gray-400">Écoles & Facs</p></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="h-16 bg-white border-t border-gray-100 flex justify-around items-center px-6">
+                             <div class="w-6 h-6 bg-black rounded-md"></div>
+                             <div class="w-6 h-6 bg-gray-200 rounded-md"></div>
+                             <div class="w-6 h-6 bg-gray-200 rounded-md"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="py-10 bg-white border-y border-gray-100 overflow-hidden relative">
+        <div class="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent z-10"></div>
+        <div class="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white to-transparent z-10"></div>
+        
+        <div class="flex gap-16 animate-scroll w-max opacity-40 grayscale hover:grayscale-0 transition-all duration-500 hover:opacity-100 cursor-default">
+            <span class="text-3xl font-black text-gray-800">SORBONNE</span>
+            <span class="text-3xl font-black text-gray-800">HEC PARIS</span>
+            <span class="text-3xl font-black text-gray-800">SCIENCES PO</span>
+            <span class="text-3xl font-black text-gray-800">POLYTECH</span>
+            <span class="text-3xl font-black text-gray-800">INSA</span>
+            <span class="text-3xl font-black text-gray-800">EPITECH</span>
+            <span class="text-3xl font-black text-gray-800">KEDGE</span>
+            <span class="text-3xl font-black text-gray-800">DAUPHINE</span>
+            <span class="text-3xl font-black text-gray-800">SORBONNE</span>
+            <span class="text-3xl font-black text-gray-800">HEC PARIS</span>
+            <span class="text-3xl font-black text-gray-800">SCIENCES PO</span>
+            <span class="text-3xl font-black text-gray-800">POLYTECH</span>
+            <span class="text-3xl font-black text-gray-800">INSA</span>
+            <span class="text-3xl font-black text-gray-800">EPITECH</span>
+            <span class="text-3xl font-black text-gray-800">KEDGE</span>
+            <span class="text-3xl font-black text-gray-800">DAUPHINE</span>
+        </div>
+    </div>
+
+    <section id="concept" class="py-24 bg-surface relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 max-w-2xl mx-auto">
+                <span class="bg-pastel-purple/30 text-black px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4 inline-block">
+                    Fonctionnalités
+                </span>
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Ton orientation,<br>en couleurs.</h2>
+                <p class="text-gray-500 font-medium">Une suite d'outils puissants, emballée dans une interface simple.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 auto-rows-[minmax(180px,auto)] gap-6">
+                
+                <div class="md:col-span-2 md:row-span-2 rounded-3xl bg-secondary border border-gray-100 p-8 relative overflow-hidden group hover:shadow-xl transition-all duration-300 bento-card">
+                    <div class="absolute top-[-20%] right-[-20%] w-[300px] h-[300px] bg-pastel-purple rounded-full blur-[80px] opacity-40 group-hover:opacity-60 transition duration-500 blob-anim"></div>
+                    <div class="absolute bottom-[-10%] left-[-10%] w-[200px] h-[200px] bg-pastel-blue rounded-full blur-[60px] opacity-30 group-hover:opacity-50 transition duration-500"></div>
+
+                    <div class="relative z-10 flex flex-col h-full justify-between">
+                        <div>
+                            <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-2xl shadow-sm mb-4">🤝</div>
+                            <h3 class="text-3xl font-bold mb-2">Matching IA</h3>
+                            <p class="text-gray-500 text-sm max-w-sm font-medium">Notre algo analyse ton profil pour trouver ton jumeau académique. Zéro hasard.</p>
+                        </div>
+                        <div class="mt-8 bg-white/60 backdrop-blur-md border border-white/50 rounded-2xl p-4 flex items-center gap-4 shadow-sm">
+                            <div class="flex -space-x-3">
+                                <div class="w-10 h-10 rounded-full bg-pastel-orange border-2 border-white"></div>
+                                <div class="w-10 h-10 rounded-full bg-pastel-cyan border-2 border-white"></div>
+                                <div class="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center text-xs border-2 border-white">You</div>
+                            </div>
+                            <div class="flex-1">
+                                <div class="h-2 bg-gray-200 rounded-full w-full overflow-hidden">
+                                    <div class="h-full bg-pastel-purple w-[92%]"></div>
+                                </div>
+                                <div class="flex justify-between text-[10px] mt-1 font-bold text-gray-400">
+                                    <span>Compatibilité</span>
+                                    <span class="text-black">92%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:col-span-1 md:row-span-1 rounded-3xl bg-secondary border border-gray-100 p-6 relative overflow-hidden group hover:shadow-lg transition bento-card">
+                    <div class="absolute inset-0 bg-pastel-red/10 opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                    <div class="flex flex-col h-full justify-center items-center text-center relative z-10">
+                        <div class="relative">
+                            <div class="text-4xl mb-2">🔔</div>
+                            <span class="absolute top-0 right-0 w-3 h-3 bg-pastel-red rounded-full border-2 border-white"></span>
+                        </div>
+                        <h3 class="font-bold text-lg">Alertes</h3>
+                        <p class="text-xs text-gray-500">Dates Parcoursup</p>
+                    </div>
+                </div>
+
+                <div class="md:col-span-1 md:row-span-1 rounded-3xl bg-secondary border border-gray-100 p-6 relative overflow-hidden group hover:shadow-lg transition bento-card">
+                    <div class="absolute inset-0 bg-pastel-green/20 opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                    <div class="flex flex-col h-full justify-center items-center text-center relative z-10">
+                        <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm mb-2 group-hover:scale-110 transition">
+                            <span class="text-2xl">📍</span>
+                        </div>
+                        <h3 class="font-bold text-lg">Autour de toi</h3>
+                        <p class="text-xs text-gray-500">JPO & Salons</p>
+                    </div>
+                </div>
+
+                <div class="md:col-span-1 md:row-span-2 rounded-3xl bg-secondary border border-gray-100 p-6 relative overflow-hidden flex flex-col hover:shadow-xl transition bento-card">
+                    <div class="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-pastel-orange/20 to-transparent"></div>
+                    <h3 class="font-bold text-xl mb-6 relative z-10">Chat Direct</h3>
+                    <div class="flex-1 space-y-3 relative z-10">
+                        <div class="flex items-end gap-2">
+                            <div class="w-6 h-6 rounded-full bg-gray-200"></div>
+                            <div class="bg-white p-3 rounded-2xl rounded-bl-none text-xs text-gray-600 shadow-sm border border-gray-100">
+                                C'est dur la prépa ?
+                            </div>
+                        </div>
+                        <div class="flex items-end gap-2 justify-end">
+                            <div class="bg-pastel-yellow p-3 rounded-2xl rounded-br-none text-xs text-black border border-orange-100 shadow-sm">
+                                Non tqt ! Faut juste s'organiser 📅
+                            </div>
+                        </div>
+                        <div class="flex items-end gap-2">
+                            <div class="w-6 h-6 rounded-full bg-gray-200"></div>
+                            <div class="bg-white p-3 rounded-2xl rounded-bl-none text-xs text-gray-600 shadow-sm border border-gray-100">
+                                Merci bg !
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4 h-10 bg-white rounded-full border border-gray-200 flex items-center px-4 text-xs text-gray-400 shadow-sm">
+                        Écrire un message...
+                    </div>
+                </div>
+
+                <div class="md:col-span-2 md:row-span-1 rounded-3xl bg-black text-white p-8 flex items-center justify-between relative overflow-hidden group bento-card">
+                    <div class="absolute -right-10 -bottom-20 w-64 h-64 bg-pastel-cyan rounded-full blur-[60px] opacity-20 group-hover:opacity-40 transition duration-500"></div>
+                    <div class="relative z-10">
+                        <div class="text-pastel-cyan font-bold text-xs uppercase tracking-wider mb-1">Communauté</div>
+                        <h3 class="text-2xl font-bold">100% Vérifiés</h3>
+                        <p class="text-gray-400 text-sm mt-1">Tous les mentors ont un badge certifié.</p>
+                    </div>
+                    <div class="relative z-10 w-16 h-16 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center border border-white/10 group-hover:rotate-12 transition">
+                        <span class="text-3xl">🛡️</span>
+                    </div>
+                </div>
+
+                <div class="md:col-span-1 md:row-span-1 rounded-3xl bg-secondary border border-gray-100 p-6 flex flex-col justify-center items-center text-center relative overflow-hidden group hover:shadow-lg transition bento-card">
+                    <div class="absolute inset-0 bg-pastel-pink/20 opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                    <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center text-2xl mb-3 shadow-sm relative z-10 group-hover:scale-110 transition">
+                        📚
+                    </div>
+                    <div class="relative z-10">
+                        <h3 class="font-bold text-lg">Guides</h3>
+                        <p class="text-xs text-gray-500">Fiches Métiers</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="mentor" class="py-24 bg-white relative overflow-hidden">
+        <div class="absolute left-0 top-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-secondary rounded-full blur-3xl -z-10"></div>
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="lg:w-1/2 relative">
+                    <div class="relative z-10 bg-white border border-gray-100 rounded-[40px] p-8 shadow-2xl animate-float max-w-md mx-auto">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="flex gap-4">
+                                <div class="w-14 h-14 bg-pastel-blue rounded-full"></div>
+                                <div><h3 class="font-bold text-lg">Thomas D.</h3><p class="text-accent text-sm font-medium">Mentor Certifié</p></div>
+                            </div>
+                            <div class="bg-pastel-green/30 text-green-800 px-3 py-1 rounded-full text-xs font-bold">En ligne</div>
+                        </div>
+                        <div class="space-y-4 mb-6">
+                            <div class="flex justify-between text-sm"><span class="text-grey">Étudiants aidés</span><span class="font-bold">42</span></div>
+                            <div class="w-full h-2 bg-gray-100 rounded-full overflow-hidden"><div class="h-full bg-accent w-[85%] rounded-full"></div></div>
+                        </div>
+                        <div class="flex gap-2">
+                            <span class="text-[10px] bg-secondary px-2 py-1 rounded-md border border-gray-200">#Droit</span>
+                            <span class="text-[10px] bg-secondary px-2 py-1 rounded-md border border-gray-200">#Paris</span>
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-6 -right-4 md:right-10 bg-black text-white p-4 rounded-2xl shadow-lg z-20 flex items-center gap-3">
+                        <div class="text-2xl">🚀</div>
+                        <div><p class="font-bold text-sm">Boost ton CV</p><p class="text-[10px] text-gray-400">Expérience valorisée</p></div>
+                    </div>
+                </div>
+
+                <div class="lg:w-1/2 space-y-8 text-center lg:text-left">
+                    <div>
+                        <span class="text-accent font-bold text-xs tracking-widest uppercase mb-2 block">Devenir Mentor</span>
+                        <h2 class="text-4xl md:text-5xl font-bold mb-4">Partage ton expérience.<br>Inspire l'avenir.</h2>
+                        <p class="text-gray-500 text-lg">Tu es étudiant ? Tes conseils valent de l'or pour un lycéen perdu. Rejoins la communauté.</p>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="flex flex-col md:flex-row gap-4 items-center md:items-start group">
+                            <div class="w-12 h-12 bg-secondary rounded-2xl flex items-center justify-center text-xl group-hover:bg-accent group-hover:text-white transition duration-300">💼</div>
+                            <div><h3 class="font-bold text-lg">Valorise ton CV</h3><p class="text-sm text-grey">Le mentorat prouve tes soft skills.</p></div>
+                        </div>
+                        <div class="flex flex-col md:flex-row gap-4 items-center md:items-start group">
+                            <div class="w-12 h-12 bg-secondary rounded-2xl flex items-center justify-center text-xl group-hover:bg-accent group-hover:text-white transition duration-300">🎁</div>
+                            <div><h3 class="font-bold text-lg">Avantages</h3><p class="text-sm text-grey">Accès à des événements privés & réseau.</p></div>
+                        </div>
+                    </div>
+                    <button class="bg-black text-white px-8 py-4 rounded-xl font-bold hover:bg-accent transition duration-300 shadow-lg">
+                        Créer mon profil Mentor
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="py-20 bg-secondary">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+                <div>
+                    <span class="text-accent font-bold text-xs tracking-widest uppercase mb-2 block">La Team Orienty</span>
+                    <h2 class="text-3xl md:text-4xl font-bold">Faits par des étudiants,<br>pour des étudiants.</h2>
+                </div>
+            </div>
+
+            <div class="flex md:grid md:grid-cols-5 gap-6 overflow-x-auto pb-8 md:pb-0 scrollbar-hide snap-x">
+                <div class="min-w-[220px] snap-center group">
+                    <div class="aspect-[3/4] rounded-3xl bg-pastel-red/30 mb-4 overflow-hidden relative group-hover:scale-105 transition duration-300">
+                        <div class="absolute inset-0 flex items-center justify-center font-bold text-pastel-red/50 text-4xl">L</div>
+                    </div>
+                    <h3 class="font-bold">Léa</h3>
+                    <p class="text-xs text-gray-500 font-semibold uppercase">Marketing</p>
+                </div>
+                 <div class="min-w-[220px] snap-center group">
+                    <div class="aspect-[3/4] rounded-3xl bg-pastel-blue/30 mb-4 overflow-hidden relative group-hover:scale-105 transition duration-300">
+                         <div class="absolute inset-0 flex items-center justify-center font-bold text-pastel-blue/50 text-4xl">C</div>
+                    </div>
+                    <h3 class="font-bold">Clément</h3>
+                    <p class="text-xs text-gray-500 font-semibold uppercase">Dev</p>
+                </div>
+                <div class="min-w-[220px] snap-center group">
+                    <div class="aspect-[3/4] rounded-3xl bg-pastel-green/30 mb-4 overflow-hidden relative group-hover:scale-105 transition duration-300">
+                         <div class="absolute inset-0 flex items-center justify-center font-bold text-pastel-green/50 text-4xl">W</div>
+                    </div>
+                    <h3 class="font-bold">Wilow</h3>
+                    <p class="text-xs text-gray-500 font-semibold uppercase">Compta</p>
+                </div>
+                <div class="min-w-[220px] snap-center group">
+                    <div class="aspect-[3/4] rounded-3xl bg-pastel-orange/30 mb-4 overflow-hidden relative group-hover:scale-105 transition duration-300">
+                         <div class="absolute inset-0 flex items-center justify-center font-bold text-pastel-orange/50 text-4xl">E</div>
+                    </div>
+                    <h3 class="font-bold">Eva</h3>
+                    <p class="text-xs text-gray-500 font-semibold uppercase">Prospection</p>
+                </div>
+                <div class="min-w-[220px] snap-center group">
+                    <div class="aspect-[3/4] rounded-3xl bg-pastel-purple/30 mb-4 overflow-hidden relative group-hover:scale-105 transition duration-300">
+                         <div class="absolute inset-0 flex items-center justify-center font-bold text-pastel-purple/50 text-4xl">N</div>
+                    </div>
+                    <h3 class="font-bold">Noeline</h3>
+                    <p class="text-xs text-gray-500 font-semibold uppercase">Marketing</p>
+                </div>
+                <div class="min-w-[220px] snap-center group">
+                    <div class="aspect-[3/4] rounded-3xl bg-pastel-purple/30 mb-4 overflow-hidden relative group-hover:scale-105 transition duration-300">
+                         <div class="absolute inset-0 flex items-center justify-center font-bold text-pastel-purple/50 text-4xl">T</div>
+                    </div>
+                    <h3 class="font-bold">Tatiana</h3>
+                    <p class="text-xs text-gray-500 font-semibold uppercase">Prospection</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-20 bg-white">
+        <div class="container mx-auto px-6 max-w-3xl">
+            <h2 class="text-3xl font-bold text-center mb-12">Questions ?</h2>
+            <div class="space-y-4">
+                <div class="bg-surface border border-gray-100 rounded-2xl p-6 shadow-sm cursor-pointer hover:border-black transition" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center"><h3 class="font-bold text-lg">C'est vraiment gratuit ?</h3><span class="text-2xl faq-icon">+</span></div>
+                    <div class="faq-content"><p class="text-gray-500 text-sm mt-4">Oui ! 100% gratuit pour les lycéens.</p></div>
+                </div>
+                <div class="bg-surface border border-gray-100 rounded-2xl p-6 shadow-sm cursor-pointer hover:border-black transition" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center"><h3 class="font-bold text-lg">Mentors vérifiés ?</h3><span class="text-2xl faq-icon">+</span></div>
+                    <div class="faq-content"><p class="text-gray-500 text-sm mt-4">Absolument. Chaque mentor envoie un certificat de scolarité.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-surface">
+        <div class="container mx-auto px-6">
+            <div class="bg-black rounded-[40px] p-12 md:p-20 text-center relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-80 h-80 bg-pastel-purple rounded-full blur-[100px] opacity-40"></div>
+                <div class="absolute bottom-0 left-0 w-80 h-80 bg-pastel-blue rounded-full blur-[100px] opacity-30"></div>
+                <div class="relative z-10">
+                    <h2 class="text-4xl md:text-6xl font-bold text-white mb-6">Ne reste pas seul<br>face à tes choix.</h2>
+                    <div class="flex flex-col sm:flex-row justify-center gap-4 mt-8">
+                        <button class="bg-white text-black px-8 py-4 rounded-xl font-bold hover:scale-105 transition duration-300">App Store</button>
+                        <button class="bg-white/10 border border-white/20 text-white px-8 py-4 rounded-xl font-bold hover:bg-white/20 transition duration-300">Google Play</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-white py-12 border-t border-gray-100">
+        <div class="container mx-auto px-6 text-center text-sm text-gray-500">
+            <p>&copy; 2025 Orienty. Made in BZH with 🥞 and ❣️</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script>
+        // Menu
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        function toggleMenu() {
+            mobileMenu.classList.toggle('menu-hidden');
+            mobileMenu.classList.toggle('menu-visible');
+        }
+        menuBtn.addEventListener('click', toggleMenu);
+
+        // FAQ
+        function toggleFaq(el) {
+            document.querySelectorAll('.faq-open').forEach(f => f !== el && f.classList.remove('faq-open'));
+            el.classList.toggle('faq-open');
+        }
+
+        // GSAP
+        gsap.registerPlugin(ScrollTrigger);
+        if(window.innerWidth > 768) {
+            gsap.from(".hero-content > *", { y:30, opacity:0, duration:1, stagger:0.1, ease:"power3.out" });
+            gsap.from(".hero-image", { y:50, opacity:0, duration:1.2, delay:0.3, ease:"power3.out" });
+            gsap.utils.toArray('.bento-card').forEach((card, i) => {
+                gsap.from(card, { scrollTrigger:{trigger:card, start:"top 85%"}, y:50, opacity:0, duration:0.8, delay:i*0.1 });
+            });
+        }
+    </script>
+</body>
+</html>

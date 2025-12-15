@@ -1,132 +1,434 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="scroll-smooth">
 <head>
-    <!-- Métadonnées de base -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Orienty connecte les lycéens avec des étudiants pour répondre à leurs questions sur l'orientation. Trouvez des réponses personnalisées pour choisir votre avenir.">
-    <meta name="author" content="Orienty Team">
-    <meta name="keywords" content="Orienty, orientation scolaire, lycéens, étudiants, mentorat, conseils orientation, avenir scolaire, application orientation, App Store, Google Play">
-    <meta name="robots" content="index, follow">
+    <title>Orienty - L'orientation en couleurs</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Balises Open Graph pour le partage sur les réseaux sociaux -->
-    <meta property="og:title" content="Orienty - Trouvez des réponses à vos questions d'orientation">
-    <meta property="og:description" content="Orienty met en relation des lycéens avec des étudiants pour répondre à toutes leurs questions sur l'orientation. Téléchargez l'application pour découvrir votre avenir.">
-    <meta property="og:image" content="https://www.orienty.fr/twitter-image.png">
-    <meta property="og:url" content="https://www.orienty.fr">
-    <meta property="og:type" content="website">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#000000',
+                        secondary: '#F7F7F9',
+                        accent: '#5384FD', 
+                        surface: '#FFFFFC',
+                        pastel: {
+                            red: '#ffadad',
+                            orange: '#ffd6a5',
+                            yellow: '#fdffb6',
+                            green: '#caffbf',
+                            cyan: '#9bf6ff',
+                            blue: '#a0c4ff',
+                            purple: '#bdb2ff',
+                            pink: '#ffc6ff',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    borderRadius: { 'xl': '14px', '2xl': '20px', '3xl': '32px' },
+                    animation: {
+                        'scroll': 'scroll 40s linear infinite', /* Ralenti pour fluidité */
+                    },
+                    keyframes: {
+                        scroll: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 
-    <!-- Balises Twitter Card -->
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@orientyfr" />
-    <meta property="og:url" content="https://orienty.fr" />
-    <meta property="og:title" content="Orienty - Trouve des réponses à tes questions d'orientation" />
-    <meta property="og:description" content="Connecte-toi avec des étudiants pour obtenir des conseils sur ton orientation scolaire grâce à Orienty. Téléchargez l'application maintenant !" />
-    <meta property="og:image" content="https://www.orienty.fr/twitter-image.png" />
-
-    <!-- Titre de la page -->
-    <title>Orienty - Réponses personnalisées pour votre orientation</title>
-
-    <link rel="stylesheet" href="./home.css">
-    <link rel="icon" href="https://www.orienty.fr/Logo.png" type="image/png">
     <style>
-        body {
-            text-align: center;
-            background-color: #f9f9f9;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+        body { 
+            overflow-x: hidden; 
+            background-color: #FFFFFC; 
+            color: #000000;
+            -webkit-font-smoothing: antialiased; /* Rendu texte Mac */
         }
-        h1 {
-            font-size: 2em;
-            margin-bottom: 1rem;
+
+        /* --- PERFORMANCE HACKS --- */
+        
+        /* Force le GPU à gérer ces éléments */
+        .gpu-accelerated {
+            transform: translate3d(0, 0, 0);
+            backface-visibility: hidden;
+            perspective: 1000px;
+            will-change: transform, opacity;
         }
-        p {
-            font-size: 1em;
-            margin-bottom: 2rem;
-            color: #333;
+
+        /* Optimisation des Blobs Flous */
+        .blur-blob {
+            will-change: transform;
+            /* On évite de changer l'opacité en continu, trop lourd */
         }
-        button {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            font-size: 1em;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-        .hidden {
-            display: none;
+
+        /* Masquer Scrollbar */
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* FAQ */
+        .faq-content { max-height: 0; overflow: hidden; transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .faq-open .faq-content { max-height: 300px; }
+        .faq-icon { transition: transform 0.3s ease; }
+        .faq-open .faq-icon { transform: rotate(180deg); }
+
+        /* Mobile Menu */
+        #mobile-menu { transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s; }
+        .menu-hidden { transform: translateY(-10px); opacity: 0; pointer-events: none; }
+        .menu-visible { transform: translateY(0); opacity: 1; pointer-events: auto; }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #000000 30%, #5384FD 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
     </style>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-
-            // Vérification si c'est un appareil iOS
-            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-                window.location.href = "https://apple.co/40jCXnQ";
-            }
-            // Vérification si c'est un appareil Android
-            else if (/Android/.test(userAgent)) {
-                document.getElementById("android-message").classList.remove("hidden");
-            } 
-            // Autres appareils : affichage du site web
-            else {
-                document.getElementById("website-content").classList.remove("hidden");
-            }
-        });
-    </script>
 </head>
-<body>
-    <!-- Contenu pour Android -->
-    <div id="android-message" class="hidden">
-        <h2>Orienty arrive bientôt !</h2>
-        <p>L'application sera bientôt disponible sur votre appareil Android.</p>
-        <button onclick="window.location.href='https://news.orienty.fr'">S'inscrire à la newsletter</button>
-    </div>
+<body class="antialiased selection:bg-pastel-blue selection:text-black">
 
-    <!-- Contenu pour le site web -->
-    <div id="website-content" class="hidden">
-        <header class="app-bar">
-            <img src="/LogoSVG.png" alt="Logo Orienty" class="logo">
-            <h2 class="app-title">Orienty</h2>
-        </header>
+    <nav class="fixed w-full z-50 top-0 px-4 py-4">
+        <div class="max-w-7xl mx-auto bg-white/90 backdrop-blur-md border border-gray-100 rounded-2xl px-6 py-3 shadow-sm flex justify-between items-center gpu-accelerated">
+            <div class="flex items-center gap-2 z-50">
+                <div class="w-9 h-9 bg-black rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-black/20">O</div>
+                <span class="text-xl font-bold tracking-tight">Orienty</span>
+            </div>
+            <div class="hidden md:flex gap-8 text-sm font-semibold text-gray-500">
+                <a href="#concept" class="hover:text-black transition">Concept</a>
+                <a href="#mentor" class="hover:text-black transition">Mentors</a>
+                <a href="#team" class="hover:text-black transition">L'Équipe</a>
+                <a href="#faq" class="hover:text-black transition">FAQ</a>
+            </div>
+            <div class="hidden md:block">
+                <a href="#" class="bg-black text-white px-6 py-2.5 rounded-xl font-bold text-sm hover:bg-accent transition-colors duration-300 shadow-xl shadow-black/10">Télécharger</a>
+            </div>
+            <button id="menu-btn" class="md:hidden z-50 p-2 text-black focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+            <div id="mobile-menu" class="absolute top-full left-0 w-full bg-white border-b border-gray-100 shadow-xl p-6 flex flex-col gap-4 md:hidden menu-hidden rounded-b-2xl">
+                <a href="#concept" class="text-lg font-bold" onclick="toggleMenu()">Concept</a>
+                <a href="#mentor" class="text-lg font-bold" onclick="toggleMenu()">Mentors</a>
+                <a href="#team" class="text-lg font-bold" onclick="toggleMenu()">L'Équipe</a>
+                <hr class="border-gray-100">
+                <a href="#" class="bg-black text-white px-6 py-3 rounded-xl font-bold text-center w-full shadow-lg">Télécharger l'App</a>
+            </div>
+        </div>
+    </nav>
 
-        <main class="content">
-            <section class="left">
-                <h1>Bienvenue sur Orienty</h1>
-                <h2>Ton guide d'orientation scolaire personnalisé</h2>
-                <p>Orienty connecte des lycéens avec des étudiants pour répondre à toutes leurs questions sur l'orientation. Découvre des conseils personnalisés et prends des décisions éclairées pour ton avenir scolaire.</p>
-                <div class="buttons">
-                    <a href="https://apple.co/40jCXnQ">
-                        <img src="/apple.svg" alt="Télécharger sur l'App Store" class="store-button">
-                    </a>
-                    <a href="https://news.orienty.fr">
-                        <img src="/google.png" alt="Télécharger sur Google Play" class="store-button">
-                    </a>
+    <header class="relative min-h-[90vh] pt-32 pb-12 flex items-center overflow-hidden">
+        <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-pastel-blue rounded-full blur-[120px] opacity-30 -translate-y-1/2 translate-x-1/3 -z-10 gpu-accelerated"></div>
+        <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-pastel-red rounded-full blur-[120px] opacity-20 translate-y-1/4 -translate-x-1/4 -z-10 gpu-accelerated"></div>
+
+        <div class="container mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+            
+            <div class="space-y-8 text-center lg:text-left order-2 lg:order-1 hero-content">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-gray-100 text-xs font-bold text-black shadow-sm mx-auto lg:mx-0">
+                    <span class="relative flex h-2 w-2">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
+                    </span>
+                    App #1 Orientation
                 </div>
-            </section>
-            <section class="right">
-                <img src="/mockup.png" alt="Aperçu de l'application Orienty" class="phone-image">
-            </section>
-        </main>
+                
+                <h1 class="text-5xl sm:text-6xl md:text-7xl font-bold leading-[1.05] tracking-tight">
+                    Ton avenir <br>
+                    <span class="text-gradient">sans le filtre.</span>
+                </h1>
+                
+                <p class="text-lg text-gray-500 max-w-lg mx-auto lg:mx-0 font-medium leading-relaxed">
+                    Discute directement avec les étudiants qui sont déjà là où tu rêves d'aller. Sans stress, sans jugement.
+                </p>
 
-        <footer class="footer">
-            <a href="/tos.html" class="footer-link">Conditions Générales d'Utilisation</a>
-        </footer>
+                <div class="flex flex-col sm:flex-row gap-4 pt-4 justify-center lg:justify-start">
+                    <button class="px-8 py-4 bg-black text-white rounded-2xl font-bold hover:scale-105 transition-transform duration-300 shadow-xl shadow-black/20 flex items-center justify-center gap-2">
+                        Commencer
+                    </button>
+                    <button class="px-8 py-4 bg-white border border-gray-200 text-black rounded-2xl font-bold hover:bg-secondary transition duration-300">
+                        Je suis étudiant
+                    </button>
+                </div>
+
+                <div class="flex justify-center lg:justify-start gap-12 pt-6 border-t border-gray-100/50">
+                    <div class="text-center lg:text-left">
+                        <p class="text-3xl font-bold flex items-center justify-center lg:justify-start">
+                            <span id="counter-users">0</span><span class="text-accent text-xl">+</span>
+                        </p>
+                        <p class="text-xs text-gray-400 font-bold uppercase tracking-wider">Lycéens aidés</p>
+                    </div>
+                    <div class="text-center lg:text-left">
+                        <p class="text-3xl font-bold flex items-center justify-center lg:justify-start">
+                             <span id="counter-schools">0</span>
+                        </p>
+                        <p class="text-xs text-gray-400 font-bold uppercase tracking-wider">Écoles & Facs</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative z-10 flex justify-center order-1 lg:order-2 hero-image gpu-accelerated">
+                <div class="relative w-[280px] h-[580px] md:w-[320px] md:h-[640px] bg-white border-[8px] border-black rounded-[45px] shadow-2xl overflow-hidden transform lg:rotate-[-3deg] hover:rotate-0 transition-transform duration-500 will-change-transform">
+                    <div class="h-full flex flex-col bg-secondary">
+                        <div class="px-5 py-5 bg-white border-b border-gray-50 flex justify-between items-center pb-3">
+                            <h2 class="text-xl font-bold text-black">Accueil</h2>
+                            <div class="w-8 h-8 bg-pastel-blue rounded-full border border-gray-100"></div>
+                        </div>
+                        <div class="flex-1 p-4 space-y-4 overflow-hidden">
+                            <div class="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+                                <div class="text-center flex-shrink-0">
+                                    <div class="w-16 h-16 rounded-full border-2 border-accent p-0.5"><div class="w-full h-full rounded-full bg-pastel-orange"></div></div>
+                                    <span class="text-[10px] font-bold mt-1 block">Léa</span>
+                                </div>
+                                <div class="text-center flex-shrink-0">
+                                    <div class="w-16 h-16 rounded-full border-2 border-gray-200 p-0.5"><div class="w-full h-full rounded-full bg-pastel-green"></div></div>
+                                    <span class="text-[10px] text-gray-400 mt-1 block">Tom</span>
+                                </div>
+                            </div>
+                            <div class="bg-black text-white p-5 rounded-3xl shadow-lg relative overflow-hidden">
+                                <div class="absolute -right-6 -top-6 w-24 h-24 bg-pastel-purple rounded-full blur-xl opacity-60"></div>
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="w-10 h-10 rounded-full bg-gray-700 border border-white/20"></div>
+                                    <div><p class="font-bold text-sm">Lucas, HEC</p><p class="text-[10px] text-gray-400">Master 2</p></div>
+                                </div>
+                                <p class="text-sm text-gray-200 leading-relaxed">"La prépa c'était dur, mais ça vaut le coup. Je te partage mes fiches ?"</p>
+                            </div>
+                        </div>
+                         <div class="h-16 bg-white border-t border-gray-100 flex justify-around items-center px-6">
+                             <div class="w-6 h-6 bg-black rounded-md"></div>
+                             <div class="w-6 h-6 bg-gray-200 rounded-md"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="py-10 bg-white border-y border-gray-100 overflow-hidden relative">
+        <div class="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+        <div class="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
+        
+        <div class="flex gap-16 animate-scroll w-max opacity-40 grayscale hover:grayscale-0 transition-all duration-500 hover:opacity-100 cursor-default gpu-accelerated">
+            <span class="text-3xl font-black text-gray-800">SORBONNE</span>
+            <span class="text-3xl font-black text-gray-800">HEC PARIS</span>
+            <span class="text-3xl font-black text-gray-800">SCIENCES PO</span>
+            <span class="text-3xl font-black text-gray-800">POLYTECH</span>
+            <span class="text-3xl font-black text-gray-800">INSA</span>
+            <span class="text-3xl font-black text-gray-800">EPITECH</span>
+            <span class="text-3xl font-black text-gray-800">KEDGE</span>
+            <span class="text-3xl font-black text-gray-800">DAUPHINE</span>
+            <span class="text-3xl font-black text-gray-800">SORBONNE</span>
+            <span class="text-3xl font-black text-gray-800">HEC PARIS</span>
+            <span class="text-3xl font-black text-gray-800">SCIENCES PO</span>
+            <span class="text-3xl font-black text-gray-800">POLYTECH</span>
+            <span class="text-3xl font-black text-gray-800">INSA</span>
+            <span class="text-3xl font-black text-gray-800">EPITECH</span>
+            <span class="text-3xl font-black text-gray-800">KEDGE</span>
+            <span class="text-3xl font-black text-gray-800">DAUPHINE</span>
+        </div>
     </div>
+
+    <section id="concept" class="py-24 bg-surface relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 max-w-2xl mx-auto">
+                <span class="bg-pastel-purple/30 text-black px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4 inline-block">Fonctionnalités</span>
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Ton orientation,<br>en couleurs.</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 auto-rows-[minmax(180px,auto)] gap-6">
+                <div class="md:col-span-2 md:row-span-2 rounded-3xl bg-secondary border border-gray-100 p-8 relative overflow-hidden group hover:shadow-xl transition-shadow duration-300 gpu-accelerated bento-card">
+                    <div class="absolute top-[-20%] right-[-20%] w-[300px] h-[300px] bg-pastel-purple rounded-full blur-[80px] opacity-40 group-hover:opacity-60 transition-opacity duration-500"></div>
+                    <div class="relative z-10">
+                        <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-2xl shadow-sm mb-4">🤝</div>
+                        <h3 class="text-3xl font-bold mb-2">Matching IA</h3>
+                        <p class="text-gray-500 text-sm max-w-sm font-medium">Algo de compatibilité V2.</p>
+                    </div>
+                </div>
+
+                <div class="md:col-span-1 md:row-span-1 rounded-3xl bg-secondary border border-gray-100 p-6 relative overflow-hidden group hover:shadow-lg transition-shadow bento-card">
+                    <div class="absolute inset-0 bg-pastel-red/10 opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                    <div class="flex flex-col h-full justify-center items-center text-center relative z-10">
+                        <div class="text-4xl mb-2">🔔</div>
+                        <h3 class="font-bold text-lg">Alertes</h3>
+                    </div>
+                </div>
+
+                <div class="md:col-span-1 md:row-span-1 rounded-3xl bg-secondary border border-gray-100 p-6 relative overflow-hidden group hover:shadow-lg transition-shadow bento-card">
+                    <div class="absolute inset-0 bg-pastel-green/20 opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                    <div class="flex flex-col h-full justify-center items-center text-center relative z-10">
+                        <div class="text-4xl mb-2">📍</div>
+                        <h3 class="font-bold text-lg">JPO</h3>
+                    </div>
+                </div>
+
+                <div class="md:col-span-1 md:row-span-2 rounded-3xl bg-secondary border border-gray-100 p-6 relative overflow-hidden flex flex-col hover:shadow-xl transition-shadow bento-card">
+                    <div class="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-pastel-orange/20 to-transparent"></div>
+                    <h3 class="font-bold text-xl mb-6 relative z-10">Chat Direct</h3>
+                    <div class="flex-1 space-y-3 relative z-10">
+                        <div class="bg-white p-3 rounded-2xl text-xs text-gray-600 shadow-sm">C'est dur ?</div>
+                        <div class="bg-pastel-yellow p-3 rounded-2xl text-xs text-black border border-orange-100 shadow-sm ml-auto">Non tqt !</div>
+                    </div>
+                </div>
+
+                <div class="md:col-span-2 md:row-span-1 rounded-3xl bg-black text-white p-8 flex items-center justify-between relative overflow-hidden group bento-card">
+                    <div class="absolute -right-10 -bottom-20 w-64 h-64 bg-pastel-cyan rounded-full blur-[60px] opacity-20 group-hover:opacity-40 transition duration-500"></div>
+                    <div class="relative z-10">
+                        <h3 class="text-2xl font-bold">100% Vérifiés</h3>
+                        <p class="text-gray-400 text-sm mt-1">Badge certifié pour tous.</p>
+                    </div>
+                    <span class="text-3xl relative z-10">🛡️</span>
+                </div>
+
+                <div class="md:col-span-1 md:row-span-1 rounded-3xl bg-secondary border border-gray-100 p-6 flex flex-col justify-center items-center text-center relative overflow-hidden group hover:shadow-lg transition-shadow bento-card">
+                    <div class="absolute inset-0 bg-pastel-pink/20 opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                    <div class="text-3xl mb-3 relative z-10">📚</div>
+                    <h3 class="font-bold text-lg relative z-10">Guides</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="mentor" class="py-24 bg-white relative overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="lg:w-1/2 relative gpu-accelerated">
+                    <div class="relative z-10 bg-white border border-gray-100 rounded-[40px] p-8 shadow-2xl max-w-md mx-auto">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="flex gap-4">
+                                <div class="w-14 h-14 bg-pastel-blue rounded-full"></div>
+                                <div><h3 class="font-bold text-lg">Thomas D.</h3><p class="text-accent text-sm font-medium">Mentor Certifié</p></div>
+                            </div>
+                            <div class="bg-pastel-green/30 text-green-800 px-3 py-1 rounded-full text-xs font-bold">En ligne</div>
+                        </div>
+                        <div class="space-y-4 mb-6">
+                            <div class="flex justify-between text-sm"><span class="text-grey">Étudiants aidés</span><span class="font-bold">42</span></div>
+                            <div class="w-full h-2 bg-gray-100 rounded-full overflow-hidden"><div class="h-full bg-accent w-[85%] rounded-full"></div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 space-y-8 text-center lg:text-left">
+                    <div>
+                        <span class="text-accent font-bold text-xs tracking-widest uppercase mb-2 block">Devenir Mentor</span>
+                        <h2 class="text-4xl md:text-5xl font-bold mb-4">Valorise ton parcours.</h2>
+                        <p class="text-gray-500 text-lg">Rejoins la communauté et booste ton CV.</p>
+                    </div>
+                    <button class="bg-black text-white px-8 py-4 rounded-xl font-bold hover:bg-accent transition duration-300 shadow-lg">Créer mon profil</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="py-20 bg-secondary">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12">La Team Orienty</h2>
+            <div class="flex md:grid md:grid-cols-5 gap-6 overflow-x-auto pb-8 md:pb-0 scrollbar-hide snap-x">
+                <div class="min-w-[200px] snap-center group text-center">
+                    <div class="aspect-[3/4] rounded-3xl bg-pastel-red/30 mb-4 flex items-center justify-center text-4xl font-bold text-pastel-red/50">T</div>
+                    <h3 class="font-bold">Thomas</h3><p class="text-xs text-gray-500 uppercase">CEO</p>
+                </div>
+                 <div class="min-w-[200px] snap-center group text-center">
+                    <div class="aspect-[3/4] rounded-3xl bg-pastel-blue/30 mb-4 flex items-center justify-center text-4xl font-bold text-pastel-blue/50">S</div>
+                    <h3 class="font-bold">Sarah</h3><p class="text-xs text-gray-500 uppercase">CTO</p>
+                </div>
+                 <div class="min-w-[200px] snap-center group text-center">
+                    <div class="aspect-[3/4] rounded-3xl bg-pastel-green/30 mb-4 flex items-center justify-center text-4xl font-bold text-pastel-green/50">M</div>
+                    <h3 class="font-bold">Maxime</h3><p class="text-xs text-gray-500 uppercase">Design</p>
+                </div>
+                 <div class="min-w-[200px] snap-center group text-center">
+                    <div class="aspect-[3/4] rounded-3xl bg-pastel-orange/30 mb-4 flex items-center justify-center text-4xl font-bold text-pastel-orange/50">C</div>
+                    <h3 class="font-bold">Chloé</h3><p class="text-xs text-gray-500 uppercase">Marketing</p>
+                </div>
+                 <div class="min-w-[200px] snap-center group text-center">
+                    <div class="aspect-[3/4] rounded-3xl bg-pastel-purple/30 mb-4 flex items-center justify-center text-4xl font-bold text-pastel-purple/50">L</div>
+                    <h3 class="font-bold">Lucas</h3><p class="text-xs text-gray-500 uppercase">Partenariats</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-20 bg-white">
+        <div class="container mx-auto px-6 max-w-3xl">
+            <h2 class="text-3xl font-bold text-center mb-12">Questions ?</h2>
+            <div class="space-y-4">
+                <div class="bg-surface border border-gray-100 rounded-2xl p-6 shadow-sm cursor-pointer hover:border-black transition" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center"><h3 class="font-bold text-lg">Gratuit ?</h3><span class="text-2xl faq-icon">+</span></div>
+                    <div class="faq-content"><p class="text-gray-500 text-sm mt-4">Oui, 100% gratuit pour les lycéens.</p></div>
+                </div>
+                 <div class="bg-surface border border-gray-100 rounded-2xl p-6 shadow-sm cursor-pointer hover:border-black transition" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center"><h3 class="font-bold text-lg">Vérification ?</h3><span class="text-2xl faq-icon">+</span></div>
+                    <div class="faq-content"><p class="text-gray-500 text-sm mt-4">Certificat de scolarité obligatoire.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-white py-12 border-t border-gray-100 text-center text-sm text-gray-500">
+        <div class="container mx-auto px-6">
+            <p>&copy; 2025 Orienty. Paris.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script>
+        // Toggle Mobile Menu
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('menu-hidden');
+            mobileMenu.classList.toggle('menu-visible');
+        });
+
+        // Toggle FAQ
+        function toggleFaq(el) {
+            document.querySelectorAll('.faq-open').forEach(f => f !== el && f.classList.remove('faq-open'));
+            el.classList.toggle('faq-open');
+        }
+
+        // GSAP Animations (Batching for performance)
+        gsap.registerPlugin(ScrollTrigger);
+
+        if(window.innerWidth > 768) {
+            // Hero Entrée
+            gsap.from(".hero-content > *", { y:20, opacity:0, duration:0.8, stagger:0.1, ease:"power2.out" });
+            gsap.from(".hero-image", { y:30, opacity:0, duration:1, delay:0.2, ease:"power2.out" });
+
+            // Bento Cards (Batch pour perf)
+            ScrollTrigger.batch(".bento-card", {
+                start: "top 90%",
+                onEnter: batch => gsap.to(batch, {opacity: 1, y: 0, stagger: 0.1, duration: 0.6, ease: "power2.out"}),
+                onLeave: batch => gsap.set(batch, {opacity: 0, y: 30}) // Reset si on scroll loin (optionnel)
+            });
+            // Initial set for bento cards hidden
+            gsap.set(".bento-card", {y: 30, opacity: 0});
+        }
+
+        // COMPTEUR ANIMÉ (ODOMÈTRE)
+        const counterUsers = { val: 0 };
+        const counterSchools = { val: 0 };
+
+        gsap.to(counterUsers, {
+            val: 15420, 
+            duration: 2.5, 
+            ease: "power1.out",
+            scrollTrigger: "#counter-users",
+            onUpdate: () => document.getElementById("counter-users").innerText = Math.round(counterUsers.val).toLocaleString('fr-FR')
+        });
+
+        gsap.to(counterSchools, {
+            val: 1200, 
+            duration: 2, 
+            ease: "power1.out",
+            scrollTrigger: "#counter-schools",
+            onUpdate: () => document.getElementById("counter-schools").innerText = Math.round(counterSchools.val).toLocaleString('fr-FR')
+        });
+
+    </script>
 </body>
 </html>
