@@ -7,10 +7,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Sora:wght@100..800&display=swap"
-        rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Sora:wght@100..800&display=swap" rel="stylesheet">
+    
     <title>Centre d'Aide - Orienty</title>
     <link rel="icon" href="./Assets/Logo.png" type="image/png">
 
@@ -51,62 +49,27 @@
     </script>
 
     <style>
-        body {
-            background-color: #FFFFFC;
-            color: #000000;
-            overflow-x: hidden;
-        }
-
+        body { background-color: #FFFFFC; color: #000000; overflow-x: hidden; }
+        
         /* Masquer scrollbar */
-        .scrollbar-hide::-webkit-scrollbar {
-            display: none;
-        }
-
-        .scrollbar-hide {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 
         /* Transitions fluides */
-        .fade-in {
-            animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
+        .fade-in { animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Style Accordéon */
-        details>summary {
-            list-style: none;
-        }
-
-        details>summary::-webkit-details-marker {
-            display: none;
-        }
-
-        details[open] summary~* {
-            animation: slideDown 0.3s ease-out;
-        }
-
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+        
+        details[open] summary ~ * { animation: slideDown 0.3s ease-out; }
         @keyframes slideDown {
-            0% {
-                opacity: 0;
-                transform: translateY(-10px)
-            }
-
-            100% {
-                opacity: 1;
-                transform: translateY(0)
-            }
+            0%    {opacity: 0; transform: translateY(-10px)}
+            100%  {opacity: 1; transform: translateY(0)}
         }
     </style>
 </head>
@@ -114,13 +77,10 @@
 <body class="antialiased selection:bg-pastel-blue selection:text-black pt-10 flex flex-col min-h-screen">
 
     <nav class="fixed w-full z-50 top-5 px-4">
-        <div
-            class="max-w-7xl mx-auto bg-white/80 backdrop-blur-md border border-gray-100 rounded-2xl px-6 py-3 shadow-sm flex justify-between items-center relative">
+        <div class="max-w-7xl mx-auto bg-white/80 backdrop-blur-md border border-gray-100 rounded-2xl px-6 py-3 shadow-sm flex justify-between items-center relative">
             <a href="index.html" class="flex items-center gap-3 z-50 group">
-                <img src="./Assets/LogoSVG.png" onerror="this.src='https://placehold.co/40x40'" alt="Logo Orienty"
-                    class="w-10 h-10 object-contain rounded-xl group-hover:rotate-12 transition duration-300">
-                <span class="text-xl font-bold tracking-tight">Orienty <span
-                        class="text-xs bg-secondary px-2 py-0.5 rounded ml-1 text-gray-500">Aide</span></span>
+                <img src="./Assets/LogoSVG.png" onerror="this.src='https://placehold.co/40x40'" alt="Logo Orienty" class="w-10 h-10 object-contain rounded-xl group-hover:rotate-12 transition duration-300">
+                <span class="text-xl font-bold tracking-tight">Orienty <span class="text-xs bg-secondary px-2 py-0.5 rounded ml-1 text-gray-500">Aide</span></span>
             </a>
 
             <div class="hidden md:flex gap-8 text-sm font-semibold text-gray-500">
@@ -129,75 +89,56 @@
             </div>
 
             <div class="hidden md:block">
-                <a href="mailto:aide@orienty.fr"
-                    class="bg-black text-white px-5 py-2.5 rounded-xl font-bold text-sm hover:bg-accent transition duration-300">
-                    Contacter le support
-                </a>
+               <a href="mailto:aide@orienty.fr" class="bg-black text-white px-5 py-2.5 rounded-xl font-bold text-sm hover:bg-accent transition duration-300">
+                   Contacter le support
+               </a>
             </div>
-
+            
             <a href="index.html" class="md:hidden text-sm font-bold bg-secondary px-3 py-2 rounded-lg">Retour</a>
         </div>
     </nav>
 
     <header class="relative pt-32 pb-10 overflow-visible">
-        <div
-            class="absolute top-0 right-0 w-[400px] h-[400px] bg-pastel-blue rounded-full blur-[100px] opacity-30 -translate-y-1/2 translate-x-1/3 -z-10 animate-pulse">
-        </div>
-        <div
-            class="absolute top-20 left-0 w-[300px] h-[300px] bg-pastel-purple rounded-full blur-[80px] opacity-30 -translate-x-1/4 -z-10">
-        </div>
+        <div class="absolute top-0 right-0 w-[400px] h-[400px] bg-pastel-blue rounded-full blur-[100px] opacity-30 -translate-y-1/2 translate-x-1/3 -z-10 animate-pulse"></div>
+        <div class="absolute top-20 left-0 w-[300px] h-[300px] bg-pastel-purple rounded-full blur-[80px] opacity-30 -translate-x-1/4 -z-10"></div>
 
         <div class="container mx-auto px-6 max-w-3xl text-center">
             <h1 class="text-4xl md:text-6xl font-bold mb-6 tracking-tight">
                 Comment peut-on<br><span class="text-accent">t'aider aujourd'hui ?</span>
             </h1>
-
+            
             <div class="relative max-w-xl mx-auto group">
-                <div
-                    class="absolute -inset-1 bg-gradient-to-r from-pastel-blue via-pastel-purple to-pastel-red rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-500">
-                </div>
-                <div class="relative z-10">
+                <div class="absolute -inset-1 bg-gradient-to-r from-pastel-blue via-pastel-purple to-pastel-red rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-500"></div>
+                <div class="relative">
                     <div class="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
                         <svg class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                         </svg>
                     </div>
-                    <input type="text" id="searchInput" placeholder="Recherche (ex: mot de passe, bug, mentor...)"
-                        class="block w-full pl-14 pr-5 py-5 bg-white border border-gray-100 rounded-2xl text-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-black/5 focus:border-black transition-all shadow-xl shadow-gray-200/40">
+                    <input type="text" id="searchInput" placeholder="Recherche (ex: mot de passe, bug, mentor...)" 
+                           class="block w-full pl-14 pr-5 py-5 bg-white border border-gray-100 rounded-2xl text-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-black/5 focus:border-black transition-all shadow-xl shadow-gray-200/40">
                 </div>
             </div>
         </div>
     </header>
 
     <main id="mainContent" class="container mx-auto px-6 max-w-6xl mb-24 min-h-[40vh]">
-    </main>
+        </main>
 
     <section class="container mx-auto px-6 max-w-4xl mb-20 fade-in delay-200">
-        <div
-            class="bg-black text-white rounded-[40px] p-8 md:p-12 relative overflow-hidden group hover:scale-[1.01] transition duration-500">
-            <div
-                class="absolute top-0 bottom-0 w-20 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 animate-[shine-pass_3s_infinite] z-20 pointer-events-none">
-            </div>
-            <div
-                class="absolute -right-20 -bottom-40 w-80 h-80 bg-pastel-cyan rounded-full blur-[80px] opacity-20 group-hover:opacity-40 transition duration-500">
-            </div>
-
-            <div
-                class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
+        <div class="bg-black text-white rounded-[40px] p-8 md:p-12 relative overflow-hidden group hover:scale-[1.01] transition duration-500">
+            <div class="absolute top-0 bottom-0 w-20 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 animate-[shine-pass_3s_infinite] z-20 pointer-events-none"></div>
+            <div class="absolute -right-20 -bottom-40 w-80 h-80 bg-pastel-cyan rounded-full blur-[80px] opacity-20 group-hover:opacity-40 transition duration-500"></div>
+            
+            <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
                 <div>
                     <h2 class="text-3xl font-bold mb-2">Toujours pas de réponse ?</h2>
                     <p class="text-gray-400">Notre équipe est dispo pour t'aider (et on est sympas).</p>
                 </div>
-
-                <a href="mailto:aide@orienty.fr"
-                    class="group/btn relative inline-flex items-center justify-center px-8 py-4 font-bold text-black transition-all duration-200 bg-white font-pj rounded-2xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 hover:bg-pastel-cyan">
+                
+                <a href="mailto:aide@orienty.fr" class="group/btn relative inline-flex items-center justify-center px-8 py-4 font-bold text-black transition-all duration-200 bg-white font-pj rounded-2xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 hover:bg-pastel-cyan">
                     Envoyer un mail
-                    <svg class="w-5 h-5 ml-2 transition-transform duration-300 group-hover/btn:translate-x-1"
-                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                    </svg>
+                    <svg class="w-5 h-5 ml-2 transition-transform duration-300 group-hover/btn:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                 </a>
             </div>
         </div>
@@ -206,114 +147,183 @@
     <footer class="bg-white py-12 border-t border-gray-100 mt-auto">
         <div class="container mx-auto px-6 flex flex-col items-center">
             <div class="flex gap-6 mb-8">
-                <a href="https://www.instagram.com/orientyfr"
-                    class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center hover:bg-black hover:text-white hover:scale-110 transition duration-300 shadow-sm">
-                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                        <path
-                            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-                    </svg>
+                <a href="https://www.instagram.com/orientyfr" class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center hover:bg-black hover:text-white hover:scale-110 transition duration-300 shadow-sm">
+                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                 </a>
-                <a href="https://www.tiktok.com/@orientyfr"
-                    class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center hover:bg-black hover:text-white hover:scale-110 transition duration-300 shadow-sm">
-                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                        <path
-                            d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.35-1.08 1.08-1.15 1.81-.06.57.05 1.13.29 1.67.61.99 1.98 1.56 3.15 1.36 1.17-.18 2.13-1.12 2.24-2.29.02-.83.01-1.66.01-2.49.01-4.27 0-8.54.01-12.81 2.4-.02 4.8-.02 7.2-.02z" />
-                    </svg>
+                <a href="https://www.tiktok.com/@orientyfr" class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center hover:bg-black hover:text-white hover:scale-110 transition duration-300 shadow-sm">
+                   <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.35-1.08 1.08-1.15 1.81-.06.57.05 1.13.29 1.67.61.99 1.98 1.56 3.15 1.36 1.17-.18 2.13-1.12 2.24-2.29.02-.83.01-1.66.01-2.49.01-4.27 0-8.54.01-12.81 2.4-.02 4.8-.02 7.2-.02z"/></svg>
                 </a>
-                <a href="https://www.linkedin.com/company/105849233/"
-                    class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center hover:bg-black hover:text-white hover:scale-110 transition duration-300 shadow-sm">
-                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                        <path
-                            d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z" />
-                    </svg>
+                <a href="https://www.linkedin.com/company/105849233/" class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center hover:bg-black hover:text-white hover:scale-110 transition duration-300 shadow-sm">
+                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/></svg>
                 </a>
             </div>
             <p class="text-sm text-gray-500">&copy; 2025 Orienty. Made in BZH with 🥞 and ❣️</p>
         </div>
     </footer>
 
-    <script src="data/faq.js"></script>
     <script>
-        // js/help.js
+        const helpData = [
+            {
+                id: "account",
+                title: "Mon Compte",
+                icon: "⚡",
+                color: "bg-pastel-blue", // Couleur du header de carte
+                accent: "text-blue-500",
+                desc: "Problèmes de connexion & inscription",
+                articles: [
+                    { q: "Je ne reçois pas le mail de validation", a: "Regarde dans tes spams ou courriers indésirables. Si tu utilises une adresse de lycée, il arrive qu'elles bloquent les mails externes. Réessaie avec une adresse perso (Gmail, etc.)." },
+                    { q: "Impossible de créer un compte", a: "Vérifie que tu as rempli tous les champs. Si ton email est déjà utilisé, essaie de te connecter ou utilise la fonction 'Mot de passe oublié'." },
+                    { q: "Comment supprimer mes données ?", a: "Tu peux le faire directement dans l'app : Profil > Paramètres > Sécurité > Supprimer mon compte." }
+                ]
+            },
+            {
+                id: "mentors",
+                title: "Espace Mentors",
+                icon: "🎓",
+                color: "bg-pastel-purple",
+                accent: "text-purple-500",
+                desc: "Certifications et rôle des étudiants",
+                articles: [
+                    { q: "Comment devenir Mentor ?", a: "Inscris-toi en tant qu'étudiant. On te demandera une photo de ta carte étudiante ou un certificat de scolarité pour valider ton profil." },
+                    { q: "Est-ce rémunéré ?", a: "Non, Orienty est une communauté d'entraide bénévole. Mais c'est une super expérience à valoriser sur ton CV !" },
+                    { q: "Je peux refuser une demande de chat ?", a: "Bien sûr. Tu es libre de répondre quand tu veux et à qui tu veux." }
+                ]
+            },
+            {
+                id: "app",
+                title: "L'Application",
+                icon: "📱",
+                color: "bg-pastel-orange",
+                accent: "text-orange-500",
+                desc: "Fonctionnalités et compatibilité",
+                articles: [
+                    { q: "C'est dispo sur Android ?", a: "Oui ! Orienty sera disponible sur l'App Store (iOS) et le Google Play Store en même temps." },
+                    { q: "Quand sort l'application ?", a: "Très bientôt ! On peaufine les derniers détails. Suis-nous sur les réseaux pour la date exacte." },
+                    { q: "C'est quoi les 'matchs' ?", a: "Notre algorithme te propose les mentors qui correspondent le mieux à tes vœux d'orientation." }
+                ]
+            },
+            {
+                id: "safety",
+                title: "Sécurité & Parents",
+                icon: "🛡️",
+                color: "bg-pastel-red",
+                accent: "text-red-500",
+                desc: "Confidentialité et modération",
+                articles: [
+                    { q: "Est-ce sécurisé pour mon enfant ?", a: "Oui. Tous les mentors sont vérifiés (identités contrôlées). Les conversations sont privées mais peuvent être signalées en cas de problème." },
+                    { q: "Comment signaler un comportement ?", a: "Dans le chat, cliquez sur les 3 points en haut à droite > Signaler. Nous traitons ces alertes en priorité absolue." },
+                    { q: "Les données sont-elles vendues ?", a: "Jamais. Vos données servent uniquement à faire fonctionner l'application." }
+                ]
+            },
+            {
+                id: "orientation",
+                title: "Conseils Orientation",
+                icon: "🧭",
+                color: "bg-pastel-green",
+                accent: "text-green-600",
+                desc: "Parcoursup et choix d'école",
+                articles: [
+                    { q: "Que demander à un mentor ?", a: "Demande-lui son emploi du temps type, la charge de travail, l'ambiance, les débouchés... tout ce qui n'est pas dans la brochure !" },
+                    { q: "Je ne sais pas quoi choisir", a: "Fais nos tests de personnalité dans l'app, ou explore les fiches métiers pour trouver de l'inspiration." }
+                ]
+            },
+            {
+                id: "bug",
+                title: "Signalement de Bug",
+                icon: "🐛",
+                color: "bg-pastel-yellow",
+                accent: "text-yellow-600",
+                desc: "Un problème technique ?",
+                articles: [
+                    { q: "L'application crash", a: "Vérifie que tu as la dernière mise à jour. Si ça continue, envoie-nous ton modèle de téléphone par mail." },
+                    { q: "Je ne peux pas envoyer de message", a: "Vérifie ta connexion internet. Si le problème persiste, essaie de redémarrer l'application." }
+                ]
+            }
+        ];
 
-        // Récupération des éléments HTML
         const mainContent = document.getElementById('mainContent');
         const searchInput = document.getElementById('searchInput');
 
-        // --- 1. FONCTION D'AFFICHAGE ACCUEIL ---
+        // Init
+        document.addEventListener('DOMContentLoaded', () => {
+            renderHome();
+            
+            searchInput.addEventListener('input', (e) => {
+                const term = e.target.value.trim().toLowerCase();
+                if (term.length > 0) search(term);
+                else renderHome();
+            });
+        });
+
+        // Vue Accueil (Grille Bento)
         function renderHome() {
-            // Si la donnée n'est pas chargée, on arrête pour éviter le crash
-            if (typeof helpData === 'undefined') {
-                console.error("Erreur : data.js n'est pas chargé avant help.js");
-                return;
-            }
-
-            if (searchInput) searchInput.value = ''; // On vide la recherche
-
             let html = `<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 fade-in">`;
-
+            
             helpData.forEach(cat => {
                 html += `
-        <div onclick="renderCategory('${cat.id}')" class="group relative cursor-pointer bg-white border border-gray-100 rounded-[32px] p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden">
-            <div class="absolute inset-0 ${cat.color} opacity-0 group-hover:opacity-20 transition duration-500"></div>
-            <div class="relative z-10">
-                <div class="flex justify-between items-start mb-4">
-                    <div class="w-14 h-14 ${cat.color} bg-opacity-30 rounded-2xl flex items-center justify-center text-3xl shadow-sm group-hover:scale-110 transition duration-300">
-                        ${cat.icon}
+                <div onclick="renderCategory('${cat.id}')" class="group relative cursor-pointer bg-white border border-gray-100 rounded-[32px] p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+                    <div class="absolute inset-0 ${cat.color} opacity-0 group-hover:opacity-20 transition duration-500"></div>
+                    
+                    <div class="relative z-10">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="w-14 h-14 ${cat.color} bg-opacity-30 rounded-2xl flex items-center justify-center text-3xl shadow-sm group-hover:scale-110 transition duration-300">
+                                ${cat.icon}
+                            </div>
+                            <div class="w-8 h-8 rounded-full border border-gray-100 flex items-center justify-center bg-white group-hover:bg-black group-hover:text-white transition">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                            </div>
+                        </div>
+                        <h3 class="font-bold text-xl mb-1">${cat.title}</h3>
+                        <p class="text-gray-500 text-sm font-medium">${cat.desc}</p>
+                        <p class="text-xs text-gray-400 mt-4 font-semibold uppercase tracking-wider">${cat.articles.length} articles</p>
                     </div>
-                    <div class="w-8 h-8 rounded-full border border-gray-100 flex items-center justify-center bg-white group-hover:bg-black group-hover:text-white transition">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                    </div>
-                </div>
-                <h3 class="font-bold text-xl mb-1">${cat.title}</h3>
-                <p class="text-gray-500 text-sm font-medium">${cat.desc}</p>
-                <p class="text-xs text-gray-400 mt-4 font-semibold uppercase tracking-wider">${cat.articles.length} articles</p>
-            </div>
-        </div>`;
+                </div>`;
             });
-
             html += `</div>`;
-            if (mainContent) mainContent.innerHTML = html;
+            mainContent.innerHTML = html;
         }
 
-        // --- 2. FONCTION D'AFFICHAGE CATÉGORIE ---
+        // Vue Catégorie (Liste questions)
         function renderCategory(id) {
             const cat = helpData.find(c => c.id === id);
-            if (!cat) return renderHome();
+            if (!cat) return;
 
             let html = `
-        <div class="fade-in">
-            <button onclick="renderHome()" class="group mb-8 flex items-center gap-2 text-sm font-bold text-gray-500 hover:text-black transition">
-                <div class="w-8 h-8 rounded-full bg-white border border-gray-200 flex items-center justify-center group-hover:bg-black group-hover:text-white transition">←</div>
-                Retour aux catégories
-            </button>
-            <div class="bg-secondary rounded-[40px] p-8 md:p-12">
-                <div class="flex items-center gap-4 mb-8">
-                    <div class="w-16 h-16 ${cat.color} rounded-2xl flex items-center justify-center text-4xl shadow-sm">
-                        ${cat.icon}
-                    </div>
-                    <div>
-                        <h2 class="text-3xl font-bold">${cat.title}</h2>
-                        <p class="text-gray-500 font-medium">Réponses fréquentes</p>
-                    </div>
-                </div>
-                <div class="space-y-4">
-    `;
+                <div class="fade-in">
+                    <button onclick="renderHome()" class="group mb-8 flex items-center gap-2 text-sm font-bold text-gray-500 hover:text-black transition">
+                        <div class="w-8 h-8 rounded-full bg-white border border-gray-200 flex items-center justify-center group-hover:bg-black group-hover:text-white transition">←</div>
+                        Retour aux catégories
+                    </button>
+
+                    <div class="bg-secondary rounded-[40px] p-8 md:p-12">
+                        <div class="flex items-center gap-4 mb-8">
+                            <div class="w-16 h-16 ${cat.color} rounded-2xl flex items-center justify-center text-4xl shadow-sm">
+                                ${cat.icon}
+                            </div>
+                            <div>
+                                <h2 class="text-3xl font-bold">${cat.title}</h2>
+                                <p class="text-gray-500 font-medium">Réponses fréquentes</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4">
+            `;
 
             cat.articles.forEach(art => {
                 html += `
-            <details class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
-                <summary class="flex justify-between items-center p-6 cursor-pointer font-bold text-lg select-none list-none">
-                    ${art.q}
-                    <span class="w-8 h-8 flex items-center justify-center rounded-full bg-secondary text-gray-400 group-open:bg-black group-open:text-white transition-all duration-300">
-                        <span class="group-open:hidden">+</span>
-                        <span class="hidden group-open:block">-</span>
-                    </span>
-                </summary>
-                <div class="px-6 pb-6 pt-0 text-gray-600 leading-relaxed border-t border-transparent group-open:border-gray-50">
-                    ${art.a}
-                </div>
-            </details>`;
+                    <details class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+                        <summary class="flex justify-between items-center p-6 cursor-pointer font-bold text-lg select-none">
+                            ${art.q}
+                            <span class="w-8 h-8 flex items-center justify-center rounded-full bg-secondary text-gray-400 group-open:bg-black group-open:text-white transition-all duration-300">
+                                <span class="group-open:hidden">+</span>
+                                <span class="hidden group-open:block">-</span>
+                            </span>
+                        </summary>
+                        <div class="px-6 pb-6 pt-0 text-gray-600 leading-relaxed border-t border-transparent group-open:border-gray-50">
+                            ${art.a}
+                        </div>
+                    </details>
+                `;
             });
 
             html += `</div></div></div>`;
@@ -321,17 +331,12 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // --- 3. FONCTION DE RECHERCHE ---
+        // Fonction Recherche Globale
         function search(term) {
-            const cleanTerm = term.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
             let results = [];
-
             helpData.forEach(cat => {
                 cat.articles.forEach(art => {
-                    const qClean = art.q.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-                    const aClean = art.a.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-
-                    if (qClean.includes(cleanTerm) || aClean.includes(cleanTerm)) {
+                    if (art.q.toLowerCase().includes(term) || art.a.toLowerCase().includes(term)) {
                         results.push({ ...art, cat: cat });
                     }
                 });
@@ -339,45 +344,36 @@
 
             if (results.length === 0) {
                 mainContent.innerHTML = `
-            <div class="text-center py-20 fade-in">
-                <div class="text-6xl mb-4">🤔</div>
-                <h3 class="text-2xl font-bold mb-2">Aucun résultat pour "${term}"</h3>
-                <button onclick="renderHome()" class="mt-6 text-accent font-bold hover:underline">Voir tout</button>
-            </div>`;
+                    <div class="text-center py-20 fade-in">
+                        <div class="text-6xl mb-4">🤔</div>
+                        <h3 class="text-2xl font-bold mb-2">Aucun résultat pour "${term}"</h3>
+                        <p class="text-gray-500">Essaie un autre mot clé ou contacte le support.</p>
+                        <button onclick="renderHome()" class="mt-6 text-accent font-bold hover:underline">Voir tout</button>
+                    </div>`;
                 return;
             }
 
-            let html = `<div class="fade-in"><p class="mb-6 text-xs font-bold text-gray-400 uppercase tracking-widest">Résultats (${results.length})</p><div class="grid gap-4">`;
+            let html = `
+                <div class="fade-in">
+                    <p class="mb-6 font-bold text-gray-400 uppercase tracking-widest text-xs">Résultats de recherche (${results.length})</p>
+                    <div class="grid gap-4">
+            `;
+
             results.forEach(item => {
                 html += `
-            <div class="bg-white border border-gray-100 rounded-3xl p-6 shadow-sm hover:shadow-md transition duration-300">
-                <div class="flex items-center gap-2 mb-2 text-xs font-bold uppercase tracking-wider ${item.cat.accent}">
-                    <span class="text-lg">${item.cat.icon}</span> ${item.cat.title}
-                </div>
-                <h3 class="font-bold text-lg mb-2">${item.q}</h3>
-                <p class="text-gray-600 text-sm leading-relaxed">${item.a}</p>
-            </div>`;
+                    <div class="bg-white border border-gray-100 rounded-3xl p-6 shadow-sm hover:shadow-md transition duration-300">
+                        <div class="flex items-center gap-2 mb-2 text-xs font-bold uppercase tracking-wider ${item.cat.accent}">
+                            <span class="text-lg">${item.cat.icon}</span> ${item.cat.title}
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">${item.q}</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">${item.a}</p>
+                    </div>
+                `;
             });
+
             html += `</div></div>`;
             mainContent.innerHTML = html;
         }
-
-        // --- 4. INITIALISATION ---
-        window.renderCategory = renderCategory;
-        window.renderHome = renderHome;
-
-        document.addEventListener('DOMContentLoaded', () => {
-            renderHome();
-
-            if (searchInput) {
-                searchInput.addEventListener('input', (e) => {
-                    const term = e.target.value.trim();
-                    if (term.length > 1) search(term);
-                    else renderHome();
-                });
-            }
-        });
     </script>
 </body>
-
 </html>
