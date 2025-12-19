@@ -196,12 +196,10 @@
     <nav class="fixed w-full z-50 top-10 px-4 py-4">
         <div class="max-w-7xl mx-auto bg-white/80 backdrop-blur-md border border-gray-100 rounded-2xl px-6 py-3 shadow-sm flex justify-between items-center relative">
 
-            <div class="flex items-center gap-3 z-50">
-                <img src="./Assets/LogoSVG.png" 
-                     alt="Logo Orienty" 
-                     class="w-10 h-10 object-contain rounded-xl">
+            <a href="#" class="flex items-center gap-3 z-50 group">
+                <img src="./Assets/LogoSVG.png" onerror="this.src='https://placehold.co/40x40'" alt="Logo Orienty" class="w-10 h-10 object-contain rounded-xl group-hover:rotate-12 transition duration-300">
                 <span class="text-xl font-bold tracking-tight">Orienty</span>
-            </div>
+            </a>
 
             <div class="hidden md:flex gap-8 text-sm font-semibold text-gray-500">
                 <a href="#concept" class="hover:text-black transition">Le Concept</a>
@@ -259,7 +257,7 @@
                     <button disabled class="px-8 py-4 bg-gray-900/80 text-white/50 cursor-not-allowed rounded-2xl font-bold flex items-center justify-center gap-2">
                         Bientôt sur les stores
                     </button>
-                    <button class="px-8 py-4 bg-white border border-gray-200 text-black rounded-2xl font-bold hover:bg-secondary transition duration-300">
+                    <button onclick="document.getElementById('concept').scrollIntoView({ behavior: 'smooth' })" class="px-8 py-4 bg-white border border-gray-200 text-black rounded-2xl font-bold hover:bg-secondary transition duration-300">
                         Découvrir le projet
                     </button>
                 </div>
@@ -477,12 +475,9 @@
                             <div class="w-12 h-12 bg-secondary rounded-2xl flex items-center justify-center text-xl group-hover:bg-accent group-hover:text-white transition duration-300">💼</div>
                             <div><h3 class="font-bold text-lg">Valorise ton CV</h3><p class="text-sm text-grey">Le mentorat prouve tes soft skills.</p></div>
                         </div>
-                        <div class="flex flex-col md:flex-row gap-4 items-center md:items-start group">
-                            <div class="w-12 h-12 bg-secondary rounded-2xl flex items-center justify-center text-xl group-hover:bg-accent group-hover:text-white transition duration-300">🎁</div>
-                            <div><h3 class="font-bold text-lg">Avantages</h3><p class="text-sm text-grey">Accès à des événements privés & réseau.</p></div>
-                        </div>
                     </div>
-                    <button class="bg-black text-white px-8 py-4 rounded-xl font-bold hover:bg-accent transition duration-300 shadow-lg">Créer mon profil Mentor</button>
+                    <!-- <button disabled class="bg-black text-white px-8 py-4 rounded-xl font-bold hover:bg-accent transition duration-300 shadow-lg">Créer mon profil Mentor</button> -->
+                    <button disabled class="bg-gray-200 text-gray-500 px-8 py-4 rounded-xl font-bold text-sm cursor-not-allowed">Créer mon profil Mentor</button>
                 </div>
             </div>
         </div>
