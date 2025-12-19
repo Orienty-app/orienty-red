@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /legal/
+Disallow: /Assets/
+Disallow: /404.html
+
+Sitemap: https://orienty.fr/sitemap.xml

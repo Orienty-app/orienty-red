@@ -1,0 +1,126 @@
+[
+  {
+    "id": "account",
+    "title": "Mon Compte",
+    "icon": "⚡",
+    "color": "bg-pastel-blue",
+    "accent": "text-blue-500",
+    "desc": "Problèmes de connexion & inscription",
+    "articles": [
+      {
+        "q": "Je ne reçois pas le mail de validation",
+        "a": "Regarde dans tes spams ou courriers indésirables. Si tu utilises une adresse de lycée, il arrive qu'elles bloquent les mails externes. Réessaie avec une adresse perso (Gmail, etc.)."
+      },
+      {
+        "q": "Impossible de créer un compte",
+        "a": "Vérifie que tu as rempli tous les champs. Si ton email est déjà utilisé, essaie de te connecter ou utilise la fonction 'Mot de passe oublié'."
+      },
+      {
+        "q": "Comment supprimer mes données ?",
+        "a": "Tu peux le faire directement dans l'app : Profil > Paramètres > Sécurité > Supprimer mon compte."
+      }
+    ]
+  },
+  {
+    "id": "mentors",
+    "title": "Espace Mentors",
+    "icon": "🎓",
+    "color": "bg-pastel-purple",
+    "accent": "text-purple-500",
+    "desc": "Certifications et rôle des étudiants",
+    "articles": [
+      {
+        "q": "Comment devenir Mentor ?",
+        "a": "Inscris-toi en tant qu'étudiant. On te demandera une photo de ta carte étudiante ou un certificat de scolarité pour valider ton profil."
+      },
+      {
+        "q": "Est-ce rémunéré ?",
+        "a": "Non, Orienty est une communauté d'entraide bénévole. Mais c'est une super expérience à valoriser sur ton CV !"
+      },
+      {
+        "q": "Je peux refuser une demande de chat ?",
+        "a": "Bien sûr. Tu es libre de répondre quand tu veux et à qui tu veux."
+      }
+    ]
+  },
+  {
+    "id": "app",
+    "title": "L'Application",
+    "icon": "📱",
+    "color": "bg-pastel-orange",
+    "accent": "text-orange-500",
+    "desc": "Fonctionnalités et compatibilité",
+    "articles": [
+      {
+        "q": "C'est dispo sur Android ?",
+        "a": "Oui ! Orienty sera disponible sur l'App Store (iOS) et le Google Play Store en même temps."
+      },
+      {
+        "q": "Quand sort l'application ?",
+        "a": "Très bientôt ! On peaufine les derniers détails. Suis-nous sur les réseaux pour la date exacte."
+      },
+      {
+        "q": "C'est quoi les 'matchs' ?",
+        "a": "Notre algorithme te propose les mentors qui correspondent le mieux à tes vœux d'orientation."
+      }
+    ]
+  },
+  {
+    "id": "safety",
+    "title": "Sécurité & Parents",
+    "icon": "🛡️",
+    "color": "bg-pastel-red",
+    "accent": "text-red-500",
+    "desc": "Confidentialité et modération",
+    "articles": [
+      {
+        "q": "Est-ce sécurisé pour mon enfant ?",
+        "a": "Oui. Tous les mentors sont vérifiés (identités contrôlées). Les conversations sont privées mais peuvent être signalées en cas de problème."
+      },
+      {
+        "q": "Comment signaler un comportement ?",
+        "a": "Dans le chat, cliquez sur les 3 points en haut à droite > Signaler. Nous traitons ces alertes en priorité absolue."
+      },
+      {
+        "q": "Les données sont-elles vendues ?",
+        "a": "Jamais. Vos données servent uniquement à faire fonctionner l'application."
+      }
+    ]
+  },
+  {
+    "id": "orientation",
+    "title": "Conseils Orientation",
+    "icon": "🧭",
+    "color": "bg-pastel-green",
+    "accent": "text-green-600",
+    "desc": "Parcoursup et choix d'école",
+    "articles": [
+      {
+        "q": "Que demander à un mentor ?",
+        "a": "Demande-lui son emploi du temps type, la charge de travail, l'ambiance, les débouchés... tout ce qui n'est pas dans la brochure !"
+      },
+      {
+        "q": "Je ne sais pas quoi choisir",
+        "a": "Fais nos tests de personnalité dans l'app, ou explore les fiches métiers pour trouver de l'inspiration."
+      }
+    ]
+  },
+  {
+    "id": "bug",
+    "title": "Signalement de Bug",
+    "icon": "🐛",
+    "color": "bg-pastel-yellow",
+    "accent": "text-yellow-600",
+    "desc": "Un problème technique ?",
+    "articles": [
+      {
+        "q": "L'application crash",
+        "a": "Vérifie que tu as la dernière mise à jour. Si ça continue, envoie-nous ton modèle de téléphone par mail."
+      },
+      {
+        "q": "Je ne peux pas envoyer de message",
+        "a": "Vérifie ta connexion internet. Si le problème persiste, essaie de redémarrer l'application."
+      }
+    ]
+  }
+]
