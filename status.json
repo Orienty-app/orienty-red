@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-01-04T01:06:26.362Z",
+  "lastUpdated": "2026-01-04T01:19:44.210Z",
   "systemStatus": "ok",
   "maintenance": {
     "active": false,
@@ -45,15 +45,16 @@
         1,
         1,
         1,
+        1,
         1
       ]
     },
     {
       "id": "api",
       "name": "Base de Données (Supabase)",
-      "displayUrl": "Supabase EU (Secure)",
+      "displayUrl": "Supabase EU",
       "icon": "⚡",
-      "status": "error",
+      "status": "ok",
       "uptime": "96%",
       "history": [
         1,
@@ -86,7 +87,8 @@
         1,
         1,
         1,
-        0
+        0,
+        1
       ]
     }
   ]
