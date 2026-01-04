@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-01-04T06:29:19.820Z",
+  "lastUpdated": "2026-01-04T09:18:09.350Z",
   "systemStatus": "ok",
   "maintenance": {
     "active": false,
@@ -13,7 +13,7 @@
       "displayUrl": "https://orienty.fr",
       "icon": "🌐",
       "status": "error",
-      "uptime": "97%",
+      "uptime": "94%",
       "history": [
         1,
         1,
@@ -48,6 +48,7 @@
         1,
         1,
         1,
+        0,
         0
       ]
     },
@@ -90,6 +91,7 @@
         1,
         1,
         0,
+        1,
         1,
         1,
         1
