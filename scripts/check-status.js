@@ -7,7 +7,7 @@ const CONFIG = [
     {
         id: 'web',
         name: 'Site Web (orienty.fr)',
-        url: process.env.URL_WEB || 'https://orienty.fr',
+        url: 'https://orienty.fr',
         icon: '🌐',
         displayUrl: 'https://orienty.fr'
     },
@@ -15,11 +15,9 @@ const CONFIG = [
         id: 'api',
         name: 'Base de Données (Supabase)',
         // L'URL secrète est injectée ici. Si elle manque, le script le dira.
-        url: process.env.URL_SUPABASE, 
+        url: 'https://supabase.com', 
         icon: '⚡',
-        displayUrl: 'Supabase EU (Secure)',
-        // Nécessaire pour pinger Supabase correctement
-        apiKey: process.env.SUPABASE_ANON_KEY 
+        displayUrl: 'Supabase EU',
     }
 ];
 
