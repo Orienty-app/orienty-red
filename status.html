@@ -71,7 +71,7 @@
             </div>
 
             <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">État des services</h1>
-            <p class="text-gray-500 font-medium">Monitoring en temps réel de l'infrastructure Orienty.</p>
+            <p class="text-gray-500 font-medium">Monitoring de l'infrastructure Orienty.</p>
         </div>
     </header>
 
@@ -160,8 +160,11 @@
 
         async function init() {
             try {
-                // Fetch avec paramètre anti-cache
-                const response = await fetch(`./status.json?t=${Date.now()}`);
+                const rawUrl = 'https://orienty-app.github.io/orienty-red/status.json';
+                
+                // On ajoute un timestamp pour éviter que le navigateur garde une vieille version en cache
+                const response = await fetch(rawUrl + '?t=' + Date.now());
+
                 if (!response.ok) throw new Error("Erreur réseau");
                 const data = await response.json();
 

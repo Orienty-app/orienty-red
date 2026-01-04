@@ -2,7 +2,6 @@ const fs = require('fs');
 const path = require('path');
 
 // --- CONFIGURATION ---
-// On récupère les variables injectées par GitHub Actions
 const CONFIG = [
     {
         id: 'web',
@@ -14,7 +13,6 @@ const CONFIG = [
     {
         id: 'api',
         name: 'Base de Données (Supabase)',
-        // L'URL secrète est injectée ici. Si elle manque, le script le dira.
         url: 'https://supabase.com', 
         icon: '⚡',
         displayUrl: 'Supabase EU',
