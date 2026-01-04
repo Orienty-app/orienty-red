@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Sora:wght@100..800&display=swap" rel="stylesheet">
+    <title>État des services - Orienty</title>
+    <link rel="icon" href="./Assets/Logo.png" type="image/png">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#000000',
+                        secondary: '#F7F7F9',
+                        status: { ok: '#4ADE80', warning: '#FACC15', error: '#F87171', maint: '#60A5FA' },
+                        pastel: { green: '#caffbf', yellow: '#fdffb6', red: '#ffadad', blue: '#a0c4ff' }
+                    },
+                    fontFamily: { sans: ['"Sora"', 'sans-serif'] },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'slide-up': 'slideUp 0.5s ease-out forwards',
+                    },
+                    keyframes: {
+                        slideUp: {
+                            '0%': { opacity: 0, transform: 'translateY(20px)' },
+                            '100%': { opacity: 1, transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #FFFFFC; color: #000000; overflow-x: hidden; }
+        .shimmer { background: linear-gradient(90deg, #f0f0f0 25%, #f8f8f8 50%, #f0f0f0 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; }
+        @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-pastel-blue selection:text-black pt-10 flex flex-col min-h-screen">
+
+    <nav class="fixed w-full z-50 top-10 px-4">
+        <div
+            class="max-w-7xl mx-auto bg-white/80 backdrop-blur-md border border-gray-100 rounded-2xl px-6 py-3 shadow-sm flex justify-between items-center relative">
+
+            <a href="../index.html" class="flex items-center gap-3 z-50 group">
+                <img src="/Assets/LogoSVG.png" onerror="this.src='https://placehold.co/40x40'" alt="Logo Orienty"
+                    class="w-10 h-10 object-contain rounded-xl group-hover:rotate-12 transition duration-300">
+                <span class="text-xl font-bold tracking-tight">Orienty <span
+                        class="text-xs bg-secondary px-2 py-0.5 rounded ml-1 text-gray-500">Status</span></span>
+            </a>
+
+            <a href="../index.html"
+                class="text-sm font-bold bg-secondary px-4 py-2 rounded-xl hover:bg-black hover:text-white transition-colors duration-300">
+                Retour au site
+            </a>
+        </div>
+    </nav>
+
+    <header class="relative pt-32 pb-12">
+        <div id="hero-glow" class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-gray-200 rounded-full blur-[120px] opacity-20 -z-10 transition-colors duration-1000"></div>
+        <div class="container mx-auto px-6 max-w-4xl text-center">
+            
+            <div id="global-badge" class="inline-flex items-center gap-3 bg-white border border-gray-100 px-6 py-3 rounded-full mb-8 animate-float">
+                <span class="relative flex h-3 w-3"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-gray-400 opacity-75"></span><span class="relative inline-flex rounded-full h-3 w-3 bg-gray-400"></span></span>
+                <span class="font-bold text-sm text-gray-500">Connexion aux systèmes...</span>
+            </div>
+
+            <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">État des services</h1>
+            <p class="text-gray-500 font-medium">Monitoring en temps réel de l'infrastructure Orienty.</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 max-w-5xl mb-24 space-y-8">
+        
+        <section id="maintenance-section" class="hidden animate-slide-up"></section>
+
+        <section id="services-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-white border border-gray-100 rounded-3xl p-6 shadow-sm h-48 flex flex-col justify-between">
+                <div class="flex gap-4"><div class="w-12 h-12 rounded-2xl shimmer"></div><div class="space-y-2"><div class="h-4 w-32 shimmer rounded"></div><div class="h-3 w-20 shimmer rounded"></div></div></div>
+                <div class="h-6 w-full shimmer rounded"></div>
+            </div>
+            <div class="bg-white border border-gray-100 rounded-3xl p-6 shadow-sm h-48 flex flex-col justify-between">
+                <div class="flex gap-4"><div class="w-12 h-12 rounded-2xl shimmer"></div><div class="space-y-2"><div class="h-4 w-32 shimmer rounded"></div><div class="h-3 w-20 shimmer rounded"></div></div></div>
+                <div class="h-6 w-full shimmer rounded"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <div class="bg-white py-12 border-t border-gray-100 mt-auto text-center">
+        <p class="text-sm text-gray-500 font-medium">Dernière vérification : <span id="last-updated" class="text-black font-bold">...</span></p>
+    </div>
+    <footer class="bg-white py-12 border-t border-gray-100 mt-auto">
+        <div class="container mx-auto px-6 flex flex-col items-center">
+            <div class="flex gap-6 mb-8">
+                <a href="https://www.instagram.com/orientyfr"
+                    class="w-10 h-10 bg-secondary rounded-full flex items-center justify-center hover:bg-black hover:text-white hover:scale-110 transition duration-300 shadow-sm text-gray-600">
+                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                        <path
+                            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                    </svg>
+                </a>
+
+                <a href="https://www.tiktok.com/@orientyfr"
+                    class="w-10 h-10 bg-secondary rounded-full flex items-center justify-center hover:bg-black hover:text-white hover:scale-110 transition duration-300 shadow-sm text-gray-600">
+                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                        <path
+                            d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.35-1.08 1.08-1.15 1.81-.06.57.05 1.13.29 1.67.61.99 1.98 1.56 3.15 1.36 1.17-.18 2.13-1.12 2.24-2.29.02-.83.01-1.66.01-2.49.01-4.27 0-8.54.01-12.81 2.4-.02 4.8-.02 7.2-.02z" />
+                    </svg>
+                </a>
+
+                <a href="https://www.linkedin.com/company/105849233/"
+                    class="w-10 h-10 bg-secondary rounded-full flex items-center justify-center hover:bg-black hover:text-white hover:scale-110 transition duration-300 shadow-sm text-gray-600">
+                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                        <path
+                            d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z" />
+                    </svg>
+                </a>
+            </div>
+
+            <br>
+
+            <nav class="flex flex-wrap justify-center gap-6 mb-8 text-sm font-bold text-gray-500">
+                <a href="https://orienty.fr/status" class="hover:text-black hover:underline transition-all duration-300">
+                    Status
+                </a>
+                <span class="text-gray-300 hidden sm:inline">•</span>
+                <a href="https://orienty.fr/help" class="hover:text-black hover:underline transition-all duration-300">
+                    Centre d'aide
+                </a>
+                <span class="text-gray-300 hidden sm:inline">•</span>
+                <a href="https://orienty.fr/legal/cgu#privacy"
+                    class="hover:text-black hover:underline transition-all duration-300">
+                    Confidentialité
+                </a>
+                <span class="text-gray-300 hidden sm:inline">•</span>
+                <a href="https://orienty.fr/legal/cgu#cgu"
+                    class="hover:text-black hover:underline transition-all duration-300">
+                    CGU
+                </a>
+            </nav>
+
+            <p class="text-xs text-gray-400 font-medium">&copy; 2025 Orienty. Made in BZH with 🥞 and ❣️</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mapping Couleurs/Textes
+        const THEMES = {
+            ok: { badge: 'bg-pastel-green/30 text-green-800', dot: 'bg-green-500', glow: 'bg-pastel-green', border: 'border-green-100', text: 'Opérationnel' },
+            warning: { badge: 'bg-pastel-yellow/50 text-yellow-800', dot: 'bg-yellow-500', glow: 'bg-pastel-yellow', border: 'border-yellow-100', text: 'Perturbé' },
+            error: { badge: 'bg-pastel-red/30 text-red-800', dot: 'bg-red-500', glow: 'bg-pastel-red', border: 'border-red-100', text: 'Panne majeure' },
+            maint: { badge: 'bg-pastel-blue/30 text-blue-800', dot: 'bg-blue-500', glow: 'bg-pastel-blue', border: 'border-blue-100', text: 'Maintenance' }
+        };
+
+        async function init() {
+            try {
+                // Fetch avec paramètre anti-cache
+                const response = await fetch(`./status.json?t=${Date.now()}`);
+                if (!response.ok) throw new Error("Erreur réseau");
+                const data = await response.json();
+
+                updateHeader(data);
+                renderMaintenance(data.maintenance);
+                renderServices(data.services);
+                
+                // Date
+                const date = new Date(data.lastUpdated);
+                document.getElementById('last-updated').innerText = date.toLocaleTimeString('fr-FR', {hour:'2-digit', minute:'2-digit'});
+
+            } catch (error) {
+                console.error(error);
+                document.getElementById('global-badge').innerHTML = `<span class="text-red-500 font-bold">Impossible de charger le statut</span>`;
+            }
+        }
+
+        function updateHeader(data) {
+            // Détermine le statut le plus grave
+            let globalStatus = 'ok';
+            if (data.services.some(s => s.status === 'error')) globalStatus = 'error';
+            else if (data.services.some(s => s.status === 'warning')) globalStatus = 'warning';
+            else if (data.maintenance && data.maintenance.active) globalStatus = 'maint';
+
+            const theme = THEMES[globalStatus];
+            
+            // Update Glow
+            document.getElementById('hero-glow').className = `absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full blur-[120px] opacity-20 -z-10 transition-colors duration-1000 ${theme.glow}`;
+            
+            // Update Badge
+            const badgeHtml = `
+                <span class="relative flex h-3 w-3">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full ${theme.dot} opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-3 w-3 ${theme.dot}"></span>
+                </span>
+                <span class="font-bold text-sm">${globalStatus === 'ok' ? 'Tous les systèmes sont opérationnels' : theme.text}</span>
+            `;
+            const badgeEl = document.getElementById('global-badge');
+            badgeEl.className = `inline-flex items-center gap-3 border px-6 py-3 rounded-full mb-8 animate-float transition-all duration-500 ${theme.badge} border-opacity-50`;
+            badgeEl.innerHTML = badgeHtml;
+        }
+
+        function renderMaintenance(maint) {
+            const section = document.getElementById('maintenance-section');
+            if (!maint || !maint.active) return;
+
+            section.innerHTML = `
+                <div class="bg-white border border-blue-100 rounded-[32px] p-8 relative overflow-hidden shadow-sm">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-pastel-blue rounded-full blur-[80px] opacity-40 pointer-events-none"></div>
+                    <div class="flex items-start gap-4 relative z-10">
+                        <div class="w-12 h-12 bg-blue-50 text-blue-500 rounded-2xl flex items-center justify-center text-2xl flex-shrink-0">🛠️</div>
+                        <div>
+                            <h3 class="font-bold text-xl text-blue-900">${maint.title}</h3>
+                            <p class="text-blue-700/80 font-medium mt-1">${maint.message}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            section.classList.remove('hidden');
+        }
+
+        function renderServices(services) {
+            const container = document.getElementById('services-grid');
+            container.innerHTML = ''; // Clear skeletons
+
+            services.forEach((service, index) => {
+                const theme = THEMES[service.status] || THEMES.ok;
+                const delay = index * 100; // Stagger effect
+
+                // Génération des barres
+                let bars = service.history.map((val, i) => {
+                    const opacity = 0.3 + (i / service.history.length) * 0.7;
+                    const color = val === 1 ? 'bg-green-400' : (val === 0.5 ? 'bg-yellow-400' : 'bg-red-400');
+                    return `<div class="w-1 h-8 rounded-sm ${color} flex-1 mx-[1px] transition-all hover:scale-y-125 origin-bottom" style="opacity: ${opacity}"></div>`;
+                }).join('');
+
+                const html = `
+                <div class="bg-white border ${service.status === 'ok' ? 'border-gray-100' : theme.border} rounded-3xl p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 opacity-0 animate-slide-up" style="animation-delay: ${delay}ms; animation-fill-mode: forwards;">
+                    <div class="flex justify-between items-start mb-6">
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 bg-secondary rounded-2xl flex items-center justify-center text-3xl group-hover:scale-110 transition duration-300 shadow-inner">
+                                ${service.icon}
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg leading-tight">${service.name}</h3>
+                                <p class="text-xs text-gray-400 font-mono mt-0.5">${service.displayUrl}</p>
+                            </div>
+                        </div>
+                        <div class="${theme.badge} px-3 py-1.5 rounded-xl text-xs font-bold border border-opacity-20 border-current flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full ${theme.dot} ${service.status === 'ok' ? 'animate-pulse' : ''}"></span>
+                            ${theme.text}
+                        </div>
+                    </div>
+                    
+                    <div class="mt-auto">
+                        <div class="flex justify-between text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">
+                            <span>24H History</span>
+                            <span class="${service.status === 'ok' ? 'text-green-600' : 'text-gray-600'}">${service.uptime}</span>
+                        </div>
+                        <div class="flex items-end h-8 w-full bg-gray-50/50 rounded-lg px-1 py-1 overflow-hidden">
+                            ${bars}
+                        </div>
+                    </div>
+                </div>`;
+                container.insertAdjacentHTML('beforeend', html);
+            });
+        }
+
+        // Démarrage avec un petit délai pour voir le skeleton (optionnel, pour l'effet)
+        setTimeout(init, 500); 
+    </script>
+</body>
+</html>

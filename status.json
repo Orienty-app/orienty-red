@@ -1,0 +1,38 @@
+{
+  "lastUpdated": "2026-01-04T12:00:00Z",
+  "systemStatus": "ok",
+  "maintenance": {
+    "active": false,
+    "title": "Maintenance infra",
+    "message": "Mise à jour de sécurité prévue ce soir."
+  },
+  "services": [
+    {
+      "id": "web",
+      "name": "Site Web",
+      "displayUrl": "https://orienty.fr",
+      "icon": "🌐",
+      "status": "ok",
+      "uptime": "99.9%",
+      "history": [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+    },
+    {
+      "id": "api",
+      "name": "Base de données",
+      "displayUrl": "Supabase EU (Protected)",
+      "icon": "⚡",
+      "status": "ok",
+      "uptime": "100%",
+      "history": [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+    },
+    {
+      "id": "app",
+      "name": "Application Mobile",
+      "displayUrl": "App Store & Play Store",
+      "icon": "📱",
+      "status": "ok",
+      "uptime": "100%",
+      "history": [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+name: Check Uptime Real
+
+on:
+  schedule:
+    # Tourne toutes les 3 heures (00h, 03h, 06h, etc.)
+    - cron: "0 */3 * * *"
+  workflow_dispatch: # Permet de lancer manuellement depuis l'interface GitHub
+
+permissions:
+  contents: write # INDISPENSABLE pour sauvegarder le fichier json
+
+jobs:
+  check-and-update:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Récupération du code
+        uses: actions/checkout@v3
+
+      - name: 🟢 Installation Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: 🔍 Lancement du monitoring
+        # C'est ici qu'on injecte tes secrets dans le script
+        env:
+          URL_WEB: 'https://orienty.fr'
+          URL_SUPABASE: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: node scripts/check-status.js
+
+      - name: 💾 Sauvegarde des résultats
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "🤖 Mise à jour automatique du statut [skip ci]"
+          file_pattern: status.json
