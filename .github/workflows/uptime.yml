@@ -2,8 +2,8 @@ name: Check Uptime Real
 
 on:
   schedule:
-    # Tourne toutes les 3 heures (00h, 03h, 06h, etc.)
-    - cron: "0 */3 * * *"
+    # Tourne tous les 2 jours à minuit (00:00)
+    - cron: "0 0 */2 * *"
   workflow_dispatch: # Permet de lancer manuellement depuis l'interface GitHub
 
 permissions:
